@@ -1,0 +1,114 @@
+/*=============== Gallery ===============*/
+.gallery__nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.gallery__nav span {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-content: center;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 100%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gallery__nav span:hover {
+  color: var(--extra-light);
+  background-color: var(--primary-color);
+}
+
+.gallery__title {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.section__title__big{
+  font-size: var(--big-font-size);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+// .gallery__grid {
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   gap: 2rem;
+// }
+
+.gallery__card {
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  cursor: pointer;
+  border-radius: 2rem;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0.4rem;
+
+}
+
+.gallery__card img {
+  border-radius: 1rem;
+}
+
+.gallery__details {
+  position: absolute;
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  bottom: -6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--extra-light);
+  background-color: rgba(42, 42, 42, 0.716);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  z-index: 1;
+  transition: 0.3s;
+}
+
+.gallery__card:hover .gallery__details {
+  bottom: 1rem;
+}
+
+.gallery__subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.row {
+  display: -ms-flexbox; /* IE 10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE 10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  -ms-flex: 50%; /* IE 10 */
+  flex: 50%;
+  padding: 0 4px;
+}
+
+.column img {
+  vertical-align: middle;
+}
+
+@media (width < 600px) {
+  .gallery__card {
+    border-radius: .5rem;
+  }
+}

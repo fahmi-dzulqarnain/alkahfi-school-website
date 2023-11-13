@@ -1,0 +1,209 @@
+:root {
+  --primary-color: #104908;
+  --Royal-Green: #19660F;
+  --Leaf: #104908;
+  --primary-color-light: #E6F2D8;
+  --Milk: #F9FCF5;
+  --Dark-Olive: #4F7616;
+  --Green: #659125;
+  --secondary-color: #fafcff;
+  --text-dark: #0d213f;
+  --text-light: #767268;
+  --extra-light: #ffffff;
+  --max-width: 1200px;
+  --mat-expansion-header-text-font: 'Quicksand', sans-serif;
+  /*
+        Fonts
+    */
+  --body-font: 'Quicksand', sans-serif;
+  --big-font-size: 2rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  /*
+        Font Weight
+    */
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  /*  
+        Margin Buttom
+    */
+  --mb-0-5: .5rem;
+  --mb-0-75: .75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  /*
+        z-index
+    */
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  /*
+        Line Height
+    */
+  --line-height-1: 1.5rem;
+  --line-height-2: 1.8rem;
+  --line-height-3: 2.1rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: var(--body-font);
+}
+
+a {
+  text-decoration: none;
+}
+
+.section__container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 10rem 1rem 5rem;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+}
+
+.section__title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.section__subtitle {
+  font-size: 1rem;
+  color: var(--text-dark);
+  max-width: calc(var(--max-width) / 2);
+  font-weight: var(--font-medium);
+  line-height: 1.8rem;
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--extra-light);
+  background-color: var(--primary-color);
+  border-radius: var(--mb-0-5);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+  border: solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: var(--font-semi-bold);
+}
+
+.btn_about span::after {
+  position: relative;
+  content: 'Lebih Lanjut';
+}
+
+.btn_about span::after {
+  position: relative;
+  content: 'Lebih Lanjut';
+}
+
+.btn_about:hover span::after {
+  content: 'Daftar';
+}
+
+.logo-btn {
+  margin-right: 0.5rem;
+  font-size: var(--mb-1);
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.title-center {
+  justify-content: center;
+  display: flex;
+  text-align: center;
+}
+
+.grid {
+  display: inline-grid;
+}
+
+.scroll-overflow-y {
+  height: 50rem;
+  overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: .5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #99B180;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/*=============== MEDIA ===============*/
+
+
+@media (width < 900px) {
+  .section__container {
+    padding: 5rem 1rem;
+  }
+}
+
+// @media (width < 600px) {
+//   .header__content .action__btns {
+//     display: contents;
+//   }
+
+//   .gallery__grid {
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+
+//   .news__grid {
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+
+//   .news__card {
+//     display: grid;
+//     grid-template-columns: none;
+//   }
+
+//   .about__container {
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+
+//   .footer__container {
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+// }
