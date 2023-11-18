@@ -8,17 +8,17 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 })
 export class MobileNavComponent {
 
-    faMenu = faBars
+    iconMenu = faBars
 
     toggleMenu() {
         const toggleClass = (element: any, className: any) => element.classList.toggle(className);
 
         toggleClass(document.querySelector(".dropdown_menu"), "open")
 
-        if (this.faMenu == faBars) {
-            this.faMenu = faXmark
+        if (this.iconMenu == faBars) {
+            this.iconMenu = faXmark
         } else {
-            this.faMenu = faBars
+            this.iconMenu = faBars
         }
     }
 }
