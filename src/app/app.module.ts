@@ -12,6 +12,13 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
+import { AdminGalleriesComponent } from './admin/admin-galleries/admin-galleries.component';
+import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component';
+import { AdminAboutComponent } from './admin/admin-about/admin-about.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,14 @@ import { FooterComponent } from './footer/footer.component';
     GalleryComponent,
     QuestionsComponent,
     AboutComponent,
-    FooterComponent
+    FooterComponent,
+    AdminComponent,
+    LoginComponent,
+    AdminHomeComponent,
+    AdminNewsComponent,
+    AdminGalleriesComponent,
+    AdminQuestionsComponent,
+    AdminAboutComponent
   ],
   imports: [
     BrowserModule,
