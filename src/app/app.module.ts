@@ -19,6 +19,7 @@ import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 import { AdminGalleriesComponent } from './admin/admin-galleries/admin-galleries.component';
 import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component';
 import { AdminAboutComponent } from './admin/admin-about/admin-about.component';
+import { MobileNavComponent } from './nav/mobile-nav/mobile-nav.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdminAboutComponent } from './admin/admin-about/admin-about.component';
     AdminNewsComponent,
     AdminGalleriesComponent,
     AdminQuestionsComponent,
-    AdminAboutComponent
+    AdminAboutComponent,
+    MobileNavComponent
   ],
   imports: [
     BrowserModule,

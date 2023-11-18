@@ -11,9 +11,6 @@ export class GalleryComponent {
     gambar_tkit = 'assets/FI-TK@2x.png'
     slideIndex = 1
 
-    hello(name: string) {
-        alert(`Halo ${name.toUpperCase()}`)
-    }
     // const indi = document.getElementsByClassName('indicator');
 
     // plusSlides(n: number) {
@@ -27,16 +24,16 @@ export class GalleryComponent {
     //     let i
     //     let slides = document.getElementsByClassName("mySlides");
     //     let dots = document.getElementsByClassName("dot");
-        
+
     //     if (n > slides.length) {this.slideIndex = 1}
     //     if (n < 1) {this.slideIndex = slides.length}
     //     for (i = 0; i < slides.length; i++) {
-    //         slides[i].style.display = "none";  
+    //         slides[i].style.display = "none";
     //     }
     //     for (i = 0; i < dots.length; i++) {
     //         dots[i].className = dots[i].className.replace(" active", "");
     //     }
-    //     slides[this.slideIndex-1].style.display = "block";  
+    //     slides[this.slideIndex-1].style.display = "block";
     //     dots[this.slideIndex-1].className += " active";
     // }
 }

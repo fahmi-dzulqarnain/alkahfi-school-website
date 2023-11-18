@@ -10,10 +10,6 @@ export class QuestionsComponent {
     judul = "Header Baru"
     gambar_tkit = 'assets/FI-TK@2x.png'
 
-    hello(name: string) {
-        alert(`Halo ${name.toUpperCase()}`)
-    }
-
     toggleQuestion() {
         const toggleQues = (el: any, className: any) => el.classList.toggle(className)
         const toggleBtnIcon = (el: any, className: any) => el.classList.toggle(className);
@@ -24,7 +20,7 @@ export class QuestionsComponent {
     // toggleTest() {
     //     /*Questions According*/
     //     const accordionItems = document.querySelectorAll('.questions_item')
-        
+
     //     accordionItems.forEach((item) => {
     //         const toggleQues = (el: any, className: any) => el.classList.toggle(className)
     //         const toggleBtnIcon = (el: any, className: any) => el.classList.toggle(className);
