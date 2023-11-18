@@ -1,0 +1,36 @@
+.p-component {
+    font-family: $fontFamily;
+}
+
+.p-menubar {
+    padding: 0;
+    background: #00000000;
+    border: none;
+    font-size: $defaultFontSize;
+}
+
+.p-button {
+    background: $leaf;
+    border: $leaf;
+}
+
+.p-button:enabled:hover, .p-button:enabled:focus {
+    background: $darkOlive;
+    border-color: $darkOlive;
+    outline: $darkOlive;
+}
+
+.p-button:focus {
+    box-shadow: 0 0 0 0.2rem $eggShell;
+}
+
+.p-inputtext:enabled:hover {
+    border-color: $darkOlive;
+}
+
+.p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem $eggShell;
+    border-color: $darkOlive;
+}

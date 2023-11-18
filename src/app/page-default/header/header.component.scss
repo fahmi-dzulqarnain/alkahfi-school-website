@@ -23,6 +23,7 @@ header {
 }
 
 .header__content {
+    margin-top: 6rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -31,10 +32,11 @@ header {
 .header__content>div {
     max-width: 400px;
     display: grid;
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 
 .header__content h1 {
+    margin: 0;
     line-height: 4rem;
     font-weight: 800;
     color: var(--text-dark);
@@ -57,6 +59,7 @@ header {
     }
 
     .header__content {
+        margin-top: 1rem;
         align-items: center;
         justify-content: center;
     }

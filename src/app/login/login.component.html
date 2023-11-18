@@ -1,1 +1,53 @@
-<p>login works!</p>
+<div class="centered"
+    [ngClass]="isMobile ? '' : 'card-login'">
+
+    <logo-branding
+        [isVerticalOrientation]="isVerticalOrientation"
+        [logoSize]="logoSize"/>
+
+    <h2 class="center-content">Masuk Akun</h2>
+
+    <form [formGroup]="loginForm" >
+
+        <span class="p-float-label p-input-icon-left">
+            <i class="input-icon">
+                <fa-icon [icon]="faUsername"/>
+            </i>
+
+            <input
+                pInputText
+                id="username"
+                formControlName="username"
+                pKeyFilter="alphanum" />
+
+            <label htmlFor="username">
+                Username
+            </label>
+        </span>
+
+        <span class="p-float-label p-input-icon-left">
+            <i class="input-icon">
+                <fa-icon [icon]="faKey"/>
+            </i>
+
+            <input
+                pPassword
+                id="password"
+                formControlName="password"
+                type="password"
+                [feedback]="false"
+                [pKeyFilter]="blockChars"/>
+
+            <label htmlFor="password">
+                Password
+            </label>
+        </span>
+
+        <button
+            pButton
+            pRipple
+            class="button-login">
+            Masuk Akun
+        </button>
+    </form>
+</div>

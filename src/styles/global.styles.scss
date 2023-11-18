@@ -1,0 +1,49 @@
+body {
+    background-color: $ghostWhite;
+    margin: 0;
+    font-family: $fontFamily;
+}
+
+h2 {
+    margin: 0;
+}
+
+.centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.absolute {
+    position: absolute;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-column {
+        @extend .flex;
+        flex-direction: column;
+    }
+
+    &-row {
+        @extend .flex;
+        flex-direction: row;
+    }
+}
+
+.center-content {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.page-container {
+    @extend .flex-column;
+    margin: 1.5rem;
+    gap: 1.5rem;
+}

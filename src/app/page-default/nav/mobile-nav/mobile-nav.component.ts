@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core'
+import { Component } from '@angular/core'
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'mobile-nav',
@@ -7,10 +8,17 @@ import { Component, Input } from '@angular/core'
 })
 export class MobileNavComponent {
 
+    faMenu = faBars
+
     toggleMenu() {
         const toggleClass = (element: any, className: any) => element.classList.toggle(className);
 
         toggleClass(document.querySelector(".dropdown_menu"), "open")
-        toggleClass(document.querySelector(".toggle_btn i"), "fa-xmark")
+
+        if (this.faMenu == faBars) {
+            this.faMenu = faXmark
+        } else {
+            this.faMenu = faBars
+        }
     }
 }

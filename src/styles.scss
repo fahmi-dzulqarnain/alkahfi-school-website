@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import "primeng/resources/themes/lara-light-teal/theme.css";
+@import "primeng/resources/primeng.css";
+@import "styles/typography.scss";
+@import "styles/colors.scss";
+@import "styles/global.styles.scss";
+@import "styles/primeng.override.scss";
 @import 'app/app.component.scss';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import 'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css';
