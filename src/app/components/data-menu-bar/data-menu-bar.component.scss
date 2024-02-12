@@ -1,0 +1,8 @@
+@import '../../../styles.scss';
+
+.data-menu-bar {
+    border-radius: $defaultSize;
+    border: 1px solid $darkOlive;
+    background: $lightYellow;
+    padding: $smallerSize;
+}

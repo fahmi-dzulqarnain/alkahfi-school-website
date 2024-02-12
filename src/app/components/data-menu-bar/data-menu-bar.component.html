@@ -1,0 +1,8 @@
+<div class="flex-row data-menu-bar">
+    <div *ngFor="let button of buttons">
+        <data-menu-button
+            [icon]="button.icon"
+            [title]="button.title"
+            [onClick]="button.onClick"/>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+.icon {
+    object-fit: contain;
+
+    &-default {
+        @extend .icon;
+        width: $defaultSize;
+    }
+
+    &-large {
+        @extend .icon;
+        width: $largeSize;
+    }
+}

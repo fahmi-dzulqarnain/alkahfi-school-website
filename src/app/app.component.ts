@@ -4,16 +4,16 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [
-    './nav/nav.component.scss', 
-    './header/header.component.scss',
-    './steps/steps.component.scss',
-    './tentang/tentang.component.scss',
-    './news/news.component.scss',
-    './gallery/gallery.component.scss',
-    './questions/questions.component.scss',
-    './about/about.component.scss',
-    './footer/footer.component.scss',
-    './app.component.scss', 
+    './page-default/nav/nav.component.scss',
+    './page-default/header/header.component.scss',
+    './page-default/steps/steps.component.scss',
+    './page-default/tentang/tentang.component.scss',
+    './page-default/news/news.component.scss',
+    './page-default/gallery/gallery.component.scss',
+    './page-default/questions/questions.component.scss',
+    './page-default/about/about.component.scss',
+    './page-default/footer/footer.component.scss',
+    './app.component.scss',
   ]
 })
 export class AppComponent {

@@ -1,0 +1,53 @@
+$tinySize: 0.5rem;
+$smallerSize: 0.75rem;
+$smallSize: 0.8rem;
+$defaultSize: 1rem;
+$mediumSize: 1.5rem;
+$largeSize: 2rem;
+$bigSize: 3.5rem;
+$biggerSize: 4rem;
+$hugeSize: 8rem;
+
+.padding {
+    padding: 1.5rem;
+
+    &-default {
+        padding: $defaultSize;
+    }
+
+    &-small {
+        padding: $smallSize;
+    }
+}
+
+.margin-top {
+    margin-top: 1.5rem;
+}
+
+.icon-title-margin {
+    margin: auto .5rem auto 0;
+}
+
+.with-gap {
+    gap: $defaultSize;
+
+    &-large {
+        gap: $largeSize;
+    }
+
+    &-small {
+        gap: $smallSize;
+    }
+
+    &-smaller {
+        gap: $smallerSize;
+    }
+
+    &-tiny {
+        gap: $tinySize;
+    }
+}
+
+.gravity-end {
+    margin-left: auto;
+}

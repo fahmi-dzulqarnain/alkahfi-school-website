@@ -1,0 +1,97 @@
+<div class="padding flex-column">
+    <div class="flex-row with-gap">
+        <img
+            class="icon-large"
+            src="assets/icons/akreditasi/akreditasi_icon.png"
+            alt="Akreditasi">
+
+        <h2>Riwayat Akreditasi</h2>
+    </div>
+
+    <div class="content-container">
+        <div class="leading-column">
+
+            <data-menu-bar [buttons]="dataMenuButtons"/>
+
+            <p-card>
+                <div *ngFor="let akreditasi of akreditasiList">
+                    <div
+                        class="flex-column clickable-with-divider padding-default"
+                        (click)="onClickDetail(akreditasi)">
+
+                        <h3>{{ akreditasi.tahun }}</h3>
+
+                        <div class="text-year">
+                            Terakreditasi "{{ akreditasi.predikatNilai }}"
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+
+        <div *ngIf="isShowForm; then akreditasiFormTemplate else noSelectedData"></div>
+
+        <ng-template #akreditasiFormTemplate>
+            <div class="padding flex-column trailing-column">
+                <h2>{{ formTitle }}</h2>
+
+                <form
+                    class="flex-column margin-top with-gap-large"
+                    [formGroup]="akreditasiForm" >
+
+                    <div class="flex-column with-gap">
+                        <label for="inputTahunAkreditasi">
+                            Tahun Akreditasi
+                        </label>
+
+                        <p-calendar
+                            id="inputTahunAkreditasi"
+                            formControlName="tahun"
+                            view="year"
+                            dateFormat="yy"/>
+                    </div>
+
+                    <div class="flex-column with-gap">
+                        <label for="inputPredikatNilai">
+                            Predikat Nilai
+                        </label>
+
+                        <p-selectButton
+                            id="inputPredikatNilai"
+                            formControlName="predikatNilai"
+                            [options]="predikatOptions"
+                            [multiple]="false"/>
+                    </div>
+
+                    <div class="flex-row gravity-end with-gap-small margin-top">
+
+                        <button
+                            pButton
+                            pRipple
+                            class="outlined"
+                            (click)="onCancel()">
+                            <h4>
+                                Batalkan
+                            </h4>
+                        </button>
+
+                        <button
+                            pButton
+                            pRipple
+                            (click)="onSave()">
+                            <h4>
+                                Simpan Perubahan
+                            </h4>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </ng-template>
+        <ng-template #noSelectedData>
+            <no-data
+                imageSource="assets/icons/akreditasi/no_akreditasi.png"
+                description="Pilih Salah Satu Akreditasi Untuk Melihat Detail atau Mengubah"/>
+        </ng-template>
+    </div>
+</div>

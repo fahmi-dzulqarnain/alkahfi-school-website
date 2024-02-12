@@ -1,3 +1,5 @@
+@import 'sizing.scss';
+
 body {
     background-color: $ghostWhite;
     margin: 0;
@@ -8,16 +10,20 @@ h2 {
     margin: 0;
 }
 
-.centered {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+h3 {
+    font-weight: 600;
 }
 
 .absolute {
     position: absolute;
+}
+
+.centered {
+    @extend .absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .flex {
@@ -46,4 +52,35 @@ h2 {
     @extend .flex-column;
     margin: 1.5rem;
     gap: 1.5rem;
+}
+
+.content-container {
+    @extend .flex-row;
+    width: 100%;
+    margin: 1.2rem auto;
+}
+
+.leading-column {
+    width: 50%;
+    float: left;
+    padding: 0 1rem 0 0;
+
+    @include breakpoint(small, max) {
+        width: 100%;
+    }
+}
+
+.trailing-column {
+    float: left;
+    padding: 0 0 0 1rem;
+    width: 50%;
+
+    @include breakpoint(small, max) {
+        width: 100%;
+    }
+}
+
+no-data {
+    margin-top: 25vh;
+    min-width: 50%;
 }

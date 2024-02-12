@@ -14,7 +14,15 @@
     border: $leaf;
 }
 
-.p-button:enabled:hover, .p-button:enabled:focus {
+.p-button.outlined {
+    color: $leaf;
+    background: $lightYellow;
+    border: 1px solid $leaf;
+}
+
+.p-button:enabled:hover,
+.p-button:enabled:focus {
+    color: $ghostWhite;
     background: $darkOlive;
     border-color: $darkOlive;
     outline: $darkOlive;
@@ -22,6 +30,62 @@
 
 .p-button:focus {
     box-shadow: 0 0 0 0.2rem $eggShell;
+}
+
+.p-card {
+    margin: $defaultSize 0;
+    border-radius: $defaultSize;
+}
+
+.p-card .p-card-body {
+    padding: $defaultSize;
+}
+
+.p-card .p-card-content {
+    padding: 0;
+}
+
+.hoverable {
+    background-color: lightgrey;
+    border-radius: .3rem;
+    cursor: pointer;
+}
+
+.clickable {
+    transition: 0.3s;
+
+    &:hover {
+        @extend .hoverable;
+    }
+
+    &-with-divider {
+        @extend .clickable;
+        border-color: lightgrey;
+        border-width: 0.5px;
+        border-style: none none solid none;
+
+        &:hover {
+            @extend .hoverable;
+        }
+    }
+}
+
+.p-selectbutton>.p-button {
+    background: $eggShell;
+}
+
+.p-selectbutton>.p-button.p-highlight {
+    background: $darkOlive;
+}
+
+.p-selectbutton>.p-button.p-highlight>span {
+    color: $eggShell;
+    font-weight: 700;
+}
+
+.p-selectbutton>.p-button>span {
+    color: $maastrichtBlue;
+    font-weight: 400;
 }
 
 .p-inputtext:enabled:hover {

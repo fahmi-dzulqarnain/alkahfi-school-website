@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { Constants } from './api/config/constant'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import { AutoCompleteModule } from 'primeng/autocomplete'
@@ -15,20 +16,24 @@ import { CalendarModule } from 'primeng/calendar'
 import { CardModule } from 'primeng/card'
 import { ChipModule } from 'primeng/chip'
 import { ConfirmDialogModule } from 'primeng/confirmdialog'
+import { DataViewModule } from 'primeng/dataview'
 import { DropdownModule } from 'primeng/dropdown'
 import { FileUploadModule } from 'primeng/fileupload'
 import { ImageModule } from 'primeng/image'
 import { InputMaskModule } from 'primeng/inputmask'
 import { InputNumberModule } from 'primeng/inputnumber'
-import { InputTextModule } from 'primeng/inputtext'
 import { InputTextareaModule } from 'primeng/inputtextarea'
+import { InputTextModule } from 'primeng/inputtext'
 import { KeyFilterModule } from 'primeng/keyfilter'
 import { MenubarModule } from 'primeng/menubar'
 import { PasswordModule } from 'primeng/password'
+import { RatingModule } from 'primeng/rating'
 import { RippleModule } from 'primeng/ripple'
+import { SelectButtonModule } from 'primeng/selectbutton'
 import { SidebarModule } from 'primeng/sidebar'
 import { SkeletonModule } from 'primeng/skeleton'
 import { TableModule } from 'primeng/table'
+import { TagModule } from 'primeng/tag'
 import { ToastModule } from 'primeng/toast'
 import { ToggleButtonModule } from 'primeng/togglebutton'
 
@@ -52,7 +57,16 @@ import { MobileNavComponent } from './page-default/nav/mobile-nav/mobile-nav.com
 import { PageDefaultComponent } from './page-default/page-default.component'
 import { NewsDetailComponent } from './page-default/news/news-detail/news-detail.component'
 import { NewsMoreComponent } from './page-default/news/news-more/news-more.component'
-import { LogoBrandingComponent } from './logo-branding/logo-branding.component'
+import { LogoBrandingComponent } from './components/logo-branding/logo-branding.component';
+import { MenuBarComponent } from './admin/menu-bar/menu-bar.component';
+import { MenuProfileComponent } from './admin/menu-profile/menu-profile.component';
+import { AdminContainerComponent } from './admin/admin-container/admin-container.component';
+import { AdminSekolahInformasiComponent } from './admin/admin-sekolah-informasi/admin-sekolah-informasi.component';
+import { AdminSekolahAkreditasiComponent } from './admin/admin-sekolah-akreditasi/admin-sekolah-akreditasi.component';
+import { AdminSekolahFasilitasComponent } from './admin/admin-sekolah-fasilitas/admin-sekolah-fasilitas.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
+import { DataMenuBarComponent } from './components/data-menu-bar/data-menu-bar.component';
+import { DataMenuButtonComponent } from './components/data-menu-button/data-menu-button.component';
 
 @NgModule({
     declarations: [
@@ -77,7 +91,16 @@ import { LogoBrandingComponent } from './logo-branding/logo-branding.component'
         PageDefaultComponent,
         NewsDetailComponent,
         NewsMoreComponent,
-        LogoBrandingComponent
+        LogoBrandingComponent,
+        MenuBarComponent,
+        MenuProfileComponent,
+        AdminContainerComponent,
+        AdminSekolahInformasiComponent,
+        AdminSekolahAkreditasiComponent,
+        AdminSekolahFasilitasComponent,
+        NoDataComponent,
+        DataMenuBarComponent,
+        DataMenuButtonComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -91,6 +114,7 @@ import { LogoBrandingComponent } from './logo-branding/logo-branding.component'
         CardModule,
         ChipModule,
         ConfirmDialogModule,
+        DataViewModule,
         DropdownModule,
         FileUploadModule,
         FontAwesomeModule,
@@ -103,15 +127,18 @@ import { LogoBrandingComponent } from './logo-branding/logo-branding.component'
         KeyFilterModule,
         MenubarModule,
         PasswordModule,
+        RatingModule,
         ReactiveFormsModule,
         RippleModule,
+        SelectButtonModule,
         SidebarModule,
         SkeletonModule,
         TableModule,
+        TagModule,
         ToastModule,
         ToggleButtonModule
     ],
-    providers: [],
+    providers: [Constants],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

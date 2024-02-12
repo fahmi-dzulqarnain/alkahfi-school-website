@@ -1,0 +1,16 @@
+@import '../../../styles/breakpoint.scss';
+
+.no-data-image {
+    width: 6rem;
+    margin: 0 auto 0.75rem auto;
+}
+
+.no-data-description {
+    width: 20rem;
+    text-align: center;
+    margin: auto;
+
+    @include breakpoint(small, max) {
+        width: 85%;
+    }
+}

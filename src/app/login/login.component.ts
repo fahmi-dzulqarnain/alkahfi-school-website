@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { faUser, faKey } from '@fortawesome/free-solid-svg-icons'
-import { LogoSize } from '../logo-branding/model/logo-size.enum'
+import { LogoSize } from '../components/logo-branding/model/logo-size.enum'
 
 @Component({
   selector: 'app-login',
