@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "alkahfi:build:production"
+              "buildTarget": "alkahfi:build:production"
             },
             "development": {
-              "browserTarget": "alkahfi:build:development"
+              "buildTarget": "alkahfi:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "alkahfi:build"
+            "buildTarget": "alkahfi:build"
           }
         },
         "test": {
