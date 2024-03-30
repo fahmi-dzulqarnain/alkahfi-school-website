@@ -58,6 +58,10 @@ h3 {
     @extend .flex-row;
     width: 100%;
     margin: 1.2rem auto;
+
+    &-no-margin {
+        margin: 0;
+    }
 }
 
 .leading-column {
@@ -77,6 +81,7 @@ h3 {
 
     @include breakpoint(small, max) {
         width: 100%;
+        padding: $defaultSize 0 0 0;
     }
 }
 

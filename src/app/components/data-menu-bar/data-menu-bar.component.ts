@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import { ButtonModel } from 'src/app/model/button.model'
 
 @Component({

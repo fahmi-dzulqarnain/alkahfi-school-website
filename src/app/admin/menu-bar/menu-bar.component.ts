@@ -4,6 +4,7 @@ import { faBuilding, faChartPie, faInfoCircle, faNewspaper, faPhotoVideo, faScho
 import { MenuItem } from 'primeng/api'
 import { Constants } from 'src/app/api/config/constant'
 import { LogoSize } from 'src/app/components/logo-branding/model/logo-size.enum'
+import { RouterService } from 'src/app/router/router.service'
 
 @Component({
   selector: 'menu-bar',
@@ -18,7 +19,7 @@ export class MenuBarComponent implements OnInit {
     menus: MenuItem[]
 
     constructor (
-        private router: Router,
+        private route: RouterService,
         constant: Constants
     ) {
         this.iconPrefix = constant.ICON_PREFIX
@@ -33,7 +34,7 @@ export class MenuBarComponent implements OnInit {
             {
                 label: 'Ringkasan Data',
                 icon: this.iconPrefix + faChartPie.iconName,
-                command: () => { this.navigateToRingkasanData() }
+                command: () => { this.route.toAdmin.ringkasanData() }
             },
             {
                 label: 'Sekolah',
@@ -43,12 +44,12 @@ export class MenuBarComponent implements OnInit {
             {
                 label: 'Berita',
                 icon: this.iconPrefix + faNewspaper.iconName,
-                command: () => { this.navigateToBerita() }
+                command: () => { this.route.toAdmin.berita() }
             },
             {
                 label: 'Galeri',
                 icon: this.iconPrefix + faPhotoVideo.iconName,
-                command: () => { this.navigateToGaleri() }
+                command: () => { this.route.toAdmin.galeri() }
             }
         ]
     }
@@ -58,42 +59,18 @@ export class MenuBarComponent implements OnInit {
             {
                 label: 'Detail Informasi',
                 icon: this.iconPrefix + faInfoCircle.iconName,
-                command: () => { this.navigateToSekolahInformasi() }
+                command: () => { this.route.toSekolah.informasi() }
             },
             {
                 label: 'Akreditasi',
                 icon: this.iconPrefix + faStar.iconName,
-                command: () => { this.navigateToSekolahAkreditasi() }
+                command: () => { this.route.toSekolah.akreditasi() }
             },
             {
                 label: 'Fasilitas',
                 icon: this.iconPrefix + faBuilding.iconName,
-                command: () => { this.navigateToSekolahFasilitas() }
+                command: () => { this.route.toSekolah.fasilitas() }
             },
         ]
-    }
-
-    navigateToBerita() {
-        this.router.navigate(['admin', 'berita'])
-    }
-
-    navigateToGaleri() {
-        this.router.navigate(['admin', 'galeri'])
-    }
-
-    navigateToRingkasanData() {
-        this.router.navigate(['admin', 'ringkasan'])
-    }
-
-    navigateToSekolahInformasi() {
-        this.router.navigate(['admin', 'sekolah', 'informasi'])
-    }
-
-    navigateToSekolahAkreditasi() {
-        this.router.navigate(['admin', 'sekolah', 'akreditasi'])
-    }
-
-    navigateToSekolahFasilitas() {
-        this.router.navigate(['admin', 'sekolah', 'fasilitas'])
     }
 }

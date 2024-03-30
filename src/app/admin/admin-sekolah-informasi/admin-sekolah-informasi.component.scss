@@ -1,41 +1,9 @@
 @import '../../../styles/breakpoint.scss';
 
 p-image {
-    width: 9rem;
-    height: 9rem;
+    width: 10rem;
+    height: 10rem;
     object-fit: contain;
-}
-
-p-fileUpload {
-    margin: auto 2rem;
-}
-
-label {
-    width: 15%;
-    margin: auto 0;
-    font-weight: 500;
-
-    @include breakpoint(medium, max) {
-        width: 20%;
-    }
-
-    @include breakpoint(small, max) {
-        width: 100%;
-    }
-}
-
-input,
-p-autoComplete {
-    width: 70%;
-    margin: .5rem 0;
-
-    @include breakpoint(medium, max) {
-        width: 80%;
-    }
-
-    @include breakpoint(small, max) {
-        width: 100%;
-    }
 }
 
 .smallInput {

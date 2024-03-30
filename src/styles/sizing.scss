@@ -31,6 +31,10 @@ $hugeSize: 8rem;
 .with-gap {
     gap: $defaultSize;
 
+    &-big {
+        gap: $bigSize;
+    }
+
     &-large {
         gap: $largeSize;
     }

@@ -1,126 +1,144 @@
 <div class="padding flex-column">
-    <h2>Detail Sekolah</h2>
+    <div class="flex-row with-gap">
+        <img
+            class="icon-big"
+            src="assets/icons/informasi/school_icon.png"
+            alt="Akreditasi">
+
+        <h2 class="title">Detail Sekolah</h2>
+    </div>
 
     <form
-        class="flex-column margin-top"
+        class="content-container flex-column margin-top"
         [formGroup]="editForm" >
 
-        <div class="flex-row">
-            <p-image
-                [src]="imgSource"
-                alt="logo"
-                [preview]="true" />
+        <div class="leading-column flex-column with-gap-large">
 
-            <p-fileUpload
-                mode="basic"
-                name="demo[]"
-                url="https://www.primefaces.org/cdn/api/upload.php"
-                accept="image/*"
-                [maxFileSize]=1000000
-                (onUpload)="onBasicUploadAuto($event)"
-                [auto]="true"
-                [chooseIcon]="iconUpload"
-                chooseLabel="Unggah Logo Lain"/>
+            <div class="flex-column with-gap-small">
+                <label for="inputNamaSekolah">Nama Sekolah</label>
+                <input
+                    pInputText
+                    id="inputNamaSekolah"
+                    formControlName="namaSekolah" />
+            </div>
+
+            <div class="flex-column with-gap-small">
+                <label for="inputSlogan">Slogan</label>
+                <input
+                    pInputText
+                    id="inputSlogan"
+                    formControlName="slogan" />
+            </div>
+
+            <div class="flex-column with-gap-small">
+                <label for="inputAlamat">Alamat</label>
+                <input
+                    pInputTextarea
+                    id="inputAlamat"
+                    formControlName="alamat" />
+            </div>
+
+            <div class="content-container-no-margin flex-row">
+                <div class="leading-column flex-column with-gap-small">
+                    <label for="inputKecamatan">Kecamatan</label>
+                    <p-autoComplete
+                        formControlName="kecamatan"
+                        [required]="true"
+                        [forceSelection]="true"
+                        [suggestions]="filteredKecamatan"
+                        (completeMethod)="filterKecamatan($event)"
+                        (onSelect)="onKecamatanSelected()" />
+                </div>
+
+                <div class="trailing-column flex-column with-gap-small">
+                    <label for="inputKelurahan">Kelurahan</label>
+                    <p-autoComplete
+                        formControlName="kelurahan"
+                        [required]="true"
+                        [forceSelection]="true"
+                        [suggestions]="filteredKelurahan"
+                        (completeMethod)="filterKelurahan($event)" />
+                </div>
+            </div>
+
+            <div class="flex-column with-gap-small">
+                <label for="inputKontak">No Telpon</label>
+                <input
+                    pInputText
+                    id="inputKontak"
+                    class="smallInput"
+                    type="tel"
+                    formControlName="kontak" />
+            </div>
+
+            <div class="flex-column with-gap-small">
+                <label for="inputEmail">Email</label>
+                <input
+                    pInputText
+                    id="inputEmail"
+                    class="smallInput"
+                    type="email"
+                    formControlName="email" />
+            </div>
         </div>
 
-        <div class="flex-row margin-top">
-            <label for="inputNamaSekolah">Nama Sekolah</label>
-            <input
-                pInputText
-                id="inputNamaSekolah"
-                formControlName="namaSekolah" />
-        </div>
+        <div class="trailing-column flex-column with-gap">
+            <div class="flex-column with-gap">
+                <label>Logo Sekolah</label>
+                <p-image
+                    [src]="imgSource"
+                    alt="logo sekolah fajar ilahi"
+                    [preview]="true" />
 
-        <div class="flex-row">
-            <label for="inputSlogan">Slogan</label>
-            <input
-                pInputText
-                id="inputSlogan"
-                formControlName="slogan" />
-        </div>
+                <p-fileUpload
+                    mode="basic"
+                    name="demo[]"
+                    url="https://www.primefaces.org/cdn/api/upload.php"
+                    accept="image/*"
+                    [maxFileSize]=1000000
+                    (onUpload)="onBasicUploadAuto($event)"
+                    [auto]="true"
+                    [chooseIcon]="iconUpload"
+                    chooseLabel="Unggah Logo"/>
+            </div>
 
-        <div class="flex-row">
-            <label for="inputAlamat">Alamat</label>
-            <input
-                pInputTextarea
-                id="inputAlamat"
-                formControlName="alamat" />
-        </div>
+            <div class="flex-column with-gap-small">
+                <label for="inputHariBelajar">Hari Belajar</label>
+                <p-selectButton
+                    id="inputHariBelajar"
+                    formControlName="hariBelajar"
+                    [options]="days"
+                    [multiple]="true"
+                    optionLabel="name"
+                    optionValue="value"/>
+            </div>
 
-        <div class="flex-row">
-            <label for="inputKecamatan">Kecamatan</label>
-            <p-autoComplete
-                formControlName="kecamatan"
-                [required]="true"
-                [forceSelection]="true"
-                [suggestions]="filteredKecamatan"
-                (completeMethod)="filterKecamatan($event)"
-                (onSelect)="onKecamatanSelected()" />
-        </div>
+            <div class="flex-column with-gap-small">
+                <label>Jam Belajar</label>
 
-        <div class="flex-row">
-            <label for="inputKelurahan">Kelurahan</label>
-            <p-autoComplete
-                formControlName="kelurahan"
-                [required]="true"
-                [forceSelection]="true"
-                [suggestions]="filteredKelurahan"
-                (completeMethod)="filterKelurahan($event)" />
-        </div>
+                <div class="flex-row">
+                    <p-calendar
+                    id="inputAwalBelajar"
+                    formControlName="jamAwalBelajar"
+                    [timeOnly]="true"
+                    [touchUI]="true"/>
 
-        <div class="flex-row">
-            <label for="inputHariBelajar">Hari Belajar</label>
-            <p-selectButton
-                id="inputHariBelajar"
-                formControlName="hariBelajar"
-                [options]="days"
-                [multiple]="true"
-                optionLabel="name"
-                optionValue="value"/>
-        </div>
+                    <span id="separator">s.d.</span>
 
-        <div class="flex-row">
-            <label>Jam Belajar</label>
+                    <p-calendar
+                        id="inputAkhirBelajar"
+                        formControlName="jamAkhirBelajar"
+                        [timeOnly]="true"
+                        [touchUI]="true"/>
+                </div>
+            </div>
 
-            <p-calendar
-                id="inputAwalBelajar"
-                formControlName="jamAwalBelajar"
-                [timeOnly]="true"
-                [touchUI]="true"/>
-
-            <span id="separator">s.d.</span>
-
-            <p-calendar
-                id="inputAkhirBelajar"
-                formControlName="jamAkhirBelajar"
-                [timeOnly]="true"
-                [touchUI]="true"/>
-        </div>
-
-        <div class="flex-row">
-            <label for="inputKontak">No Telpon</label>
-            <input
-                pInputText
-                id="inputKontak"
-                class="smallInput"
-                type="tel"
-                formControlName="kontak" />
-        </div>
-
-        <div class="flex-row">
-            <label for="inputEmail">Email</label>
-            <input
-                pInputText
-                id="inputEmail"
-                class="smallInput"
-                type="email"
-                formControlName="email" />
         </div>
 
         <button
             pButton
             pRipple
-            class="button-simpan"
+            class="button-simpan gravity-end"
             (click)="onSubmit()">
             <h4>
                 Simpan Perubahan
