@@ -19,6 +19,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog'
 import { DataViewModule } from 'primeng/dataview'
 import { DropdownModule } from 'primeng/dropdown'
 import { FileUploadModule } from 'primeng/fileupload'
+import { GalleriaModule } from 'primeng/galleria'
 import { ImageModule } from 'primeng/image'
 import { InputMaskModule } from 'primeng/inputmask'
 import { InputNumberModule } from 'primeng/inputnumber'
@@ -26,6 +27,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea'
 import { InputTextModule } from 'primeng/inputtext'
 import { KeyFilterModule } from 'primeng/keyfilter'
 import { MenubarModule } from 'primeng/menubar'
+import { OrderListModule } from 'primeng/orderlist';
 import { PasswordModule } from 'primeng/password'
 import { RatingModule } from 'primeng/rating'
 import { RippleModule } from 'primeng/ripple'
@@ -67,45 +69,49 @@ import { AdminSekolahFasilitasComponent } from './admin/admin-sekolah-fasilitas/
 import { NoDataComponent } from './components/no-data/no-data.component';
 import { DataMenuBarComponent } from './components/data-menu-bar/data-menu-bar.component';
 import { DataMenuButtonComponent } from './components/data-menu-button/data-menu-button.component';
+import { FeatureTitleComponent } from './feature-title/feature-title.component'
+import { BeritaItemComponent } from './admin/admin-news/berita-item/berita-item.component'
 
 @NgModule({
     declarations: [
-        AppComponent,
-        HeaderComponent,
-        NavComponent,
-        StepsComponent,
-        TentangComponent,
-        NewsComponent,
-        GalleryComponent,
-        QuestionsComponent,
         AboutComponent,
-        FooterComponent,
+        AdminAboutComponent,
         AdminComponent,
-        LoginComponent,
+        AdminContainerComponent,
+        AdminGalleriesComponent,
         AdminHomeComponent,
         AdminNewsComponent,
-        AdminGalleriesComponent,
         AdminQuestionsComponent,
-        AdminAboutComponent,
-        MobileNavComponent,
-        PageDefaultComponent,
-        NewsDetailComponent,
-        NewsMoreComponent,
+        AdminSekolahAkreditasiComponent,
+        AdminSekolahFasilitasComponent,
+        AdminSekolahInformasiComponent,
+        AppComponent,
+        DataMenuBarComponent,
+        DataMenuButtonComponent,
+        FeatureTitleComponent,
+        FooterComponent,
+        GalleryComponent,
+        HeaderComponent,
+        LoginComponent,
         LogoBrandingComponent,
         MenuBarComponent,
         MenuProfileComponent,
-        AdminContainerComponent,
-        AdminSekolahInformasiComponent,
-        AdminSekolahAkreditasiComponent,
-        AdminSekolahFasilitasComponent,
+        MobileNavComponent,
+        NavComponent,
+        NewsComponent,
+        NewsDetailComponent,
+        NewsMoreComponent,
         NoDataComponent,
-        DataMenuBarComponent,
-        DataMenuButtonComponent,
+        PageDefaultComponent,
+        QuestionsComponent,
+        StepsComponent,
+        TentangComponent,
     ],
     imports: [
         AppRoutingModule,
         AutoCompleteModule,
         AvatarModule,
+        BeritaItemComponent,
         BrowserAnimationsModule,
         BrowserModule,
         BrowserModule,
@@ -118,6 +124,7 @@ import { DataMenuButtonComponent } from './components/data-menu-button/data-menu
         DropdownModule,
         FileUploadModule,
         FontAwesomeModule,
+        GalleriaModule,
         HttpClientModule,
         ImageModule,
         InputMaskModule,
@@ -126,6 +133,7 @@ import { DataMenuButtonComponent } from './components/data-menu-button/data-menu
         InputTextModule,
         KeyFilterModule,
         MenubarModule,
+        OrderListModule,
         PasswordModule,
         RatingModule,
         ReactiveFormsModule,

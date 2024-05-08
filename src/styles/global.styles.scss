@@ -85,6 +85,16 @@ h3 {
     }
 }
 
+.leading-column-rigth {
+    width: 50%;
+    float: right;
+    padding: 0 1rem 0 0;
+
+    @include breakpoint(small, max) {
+        width: 100%;
+    }
+}
+
 no-data {
     margin-top: 25vh;
     min-width: 50%;

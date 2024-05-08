@@ -16,3 +16,27 @@
         width: $bigSize;
     }
 }
+
+.img-news-placeholder {
+    border-radius: 1rem;
+}
+
+.img-news-placeholder {
+
+    span {
+        img {
+            height: 15rem;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        img.p-image-preview {
+            height: 100%;
+            border-radius: 0;
+        }
+
+        button {
+            border-radius: 1rem;
+        }
+    }
+}
