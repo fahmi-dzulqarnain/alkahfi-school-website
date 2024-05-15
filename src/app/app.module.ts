@@ -27,7 +27,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea'
 import { InputTextModule } from 'primeng/inputtext'
 import { KeyFilterModule } from 'primeng/keyfilter'
 import { MenubarModule } from 'primeng/menubar'
-import { OrderListModule } from 'primeng/orderlist';
+import { OrderListModule } from 'primeng/orderlist'
 import { PasswordModule } from 'primeng/password'
 import { RatingModule } from 'primeng/rating'
 import { RippleModule } from 'primeng/ripple'
@@ -59,16 +59,16 @@ import { MobileNavComponent } from './page-default/nav/mobile-nav/mobile-nav.com
 import { PageDefaultComponent } from './page-default/page-default.component'
 import { NewsDetailComponent } from './page-default/news/news-detail/news-detail.component'
 import { NewsMoreComponent } from './page-default/news/news-more/news-more.component'
-import { LogoBrandingComponent } from './components/logo-branding/logo-branding.component';
-import { MenuBarComponent } from './admin/menu-bar/menu-bar.component';
-import { MenuProfileComponent } from './admin/menu-profile/menu-profile.component';
-import { AdminContainerComponent } from './admin/admin-container/admin-container.component';
-import { AdminSekolahInformasiComponent } from './admin/admin-sekolah-informasi/admin-sekolah-informasi.component';
-import { AdminSekolahAkreditasiComponent } from './admin/admin-sekolah-akreditasi/admin-sekolah-akreditasi.component';
-import { AdminSekolahFasilitasComponent } from './admin/admin-sekolah-fasilitas/admin-sekolah-fasilitas.component';
-import { NoDataComponent } from './components/no-data/no-data.component';
-import { DataMenuBarComponent } from './components/data-menu-bar/data-menu-bar.component';
-import { DataMenuButtonComponent } from './components/data-menu-button/data-menu-button.component';
+import { LogoBrandingComponent } from './components/logo-branding/logo-branding.component'
+import { MenuBarComponent } from './admin/menu/menu-bar/menu-bar.component'
+import { MenuProfileComponent } from './admin/menu/menu-profile/menu-profile.component'
+import { AdminContainerComponent } from './admin/admin-container/admin-container.component'
+import { AdminSekolahInformasiComponent } from './admin/sekolah/admin-sekolah-informasi/admin-sekolah-informasi.component'
+import { AdminSekolahAkreditasiComponent } from './admin/sekolah/admin-sekolah-akreditasi/admin-sekolah-akreditasi.component'
+import { AdminSekolahFasilitasComponent } from './admin/sekolah/admin-sekolah-fasilitas/admin-sekolah-fasilitas.component'
+import { NoDataComponent } from './components/no-data/no-data.component'
+import { DataMenuBarComponent } from './components/data-menu-bar/data-menu-bar.component'
+import { DataMenuButtonComponent } from './components/data-menu-button/data-menu-button.component'
 import { FeatureTitleComponent } from './feature-title/feature-title.component'
 import { BeritaItemComponent } from './admin/admin-news/berita-item/berita-item.component'
 
@@ -144,9 +144,9 @@ import { BeritaItemComponent } from './admin/admin-news/berita-item/berita-item.
         TableModule,
         TagModule,
         ToastModule,
-        ToggleButtonModule
+        ToggleButtonModule,
     ],
-    providers: [Constants],
-    bootstrap: [AppComponent]
+    providers: [ Constants ],
+    bootstrap: [ AppComponent ],
 })
-export class AppModule { }
+export class AppModule {}

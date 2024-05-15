@@ -1,10 +1,25 @@
-<div>
+<div class="flex-column">
     <img
-        src="{{ imageSource }}"
-        alt="Tidak Ada Akreditasi"
-        class="no-data-image">
+        src="{{ imageSource() }}"
+        alt="{{ getAlt() }}"
+        class="no-data-image" />
 
-    <p class="no-data-description">
-        {{ description }}
+    <h2>
+        {{ getTitle() }}
+    </h2>
+
+    <p class="margin-top-default">
+        {{ getDescription() }}
     </p>
+
+    @if (hasData() === false) {
+    <button
+        pButton
+        pRipple
+        (click)="onAdd()">
+        <h4>
+            Tambah Data Baru
+        </h4>
+    </button>
+    }
 </div>

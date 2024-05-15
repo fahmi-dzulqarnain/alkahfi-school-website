@@ -1,121 +1,125 @@
 <div class="padding flex-column">
     <feature-title
-    title="Berita"
-    iconPath="assets/icons/berita/berita_icon.png"
-    iconSize="large"/>
+        title="Berita"
+        iconPath="assets/icons/berita/berita_icon.png"
+        iconSize="large" />
 
     <div class="content-container">
         <div class="leading-column">
-                <data-menu-bar [buttons]="dataMenuButtons"/>
-                <p-card>
-                    @for(berita of beritaList; track $index) {
-                        <div class="flex-column with-gap clickable-with-divider padding-default" (click)="onClickDetail(berita)">
-                            <h3>{{ berita.judulBerita }}</h3>
-                            <p>{{ berita.konten }}</p>
-                            <div class="text-year">
-                                <div class="flex-row with-gap">
-                                    <div class="sub__details"><span class="ri-time-fill"></span> {{ berita.tanggalKirim }}</div>
-                                    <div class="sub__details"><span class="ri-user-fill"></span> {{ berita.penulis }} </div>
-                                </div>
-                            </div>
+            <data-menu-bar [buttons]="dataMenuButtons" />
+            <p-card>
+                @for(berita of beritaList; track $index) {
+                <div class="flex-column with-gap clickable-with-divider padding-default"
+                    (click)="onClickDetail(berita)">
+                    <h3>{{ berita.judulBerita }}</h3>
+                    <p>{{ berita.konten }}</p>
+                    <div class="text-year">
+                        <div class="flex-row with-gap">
+                            <div class="sub__details"><span
+                                    class="ri-time-fill"></span> {{
+                                berita.tanggalKirim }}</div>
+                            <div class="sub__details"><span
+                                    class="ri-user-fill"></span> {{
+                                berita.penulis }} </div>
                         </div>
-                    }
-                </p-card>
+                    </div>
+                </div>
+                }
+            </p-card>
         </div>
 
         @if(isShowForm) {
-            <div class="padding flex-column trailing-column">
-                <h2>{{ formTitle }}</h2>
+        <div class="padding flex-column trailing-column">
+            <h2>{{ formTitle }}</h2>
 
-                <form
-                    class="flex-column margin-top with-gap-large"
-                    [formGroup]="beritaForm" >
+            <form
+                class="flex-column margin-top with-gap-large"
+                [formGroup]="beritaForm">
 
-                    <div class="flex-column with-gap">
-                        <label>Gambar Berita</label>
-                        <p-image
-                            class="img-news-placeholder"
-                            [src]="imgSource"
-                            alt="logo sekolah fajar ilahi"
-                            [preview]="true" />
+                <div class="flex-column with-gap">
+                    <label>Gambar Berita</label>
+                    <p-image
+                        class="img-news-placeholder"
+                        [src]="imgSource"
+                        alt="logo sekolah fajar ilahi"
+                        [preview]="true" />
 
-                        <p-fileUpload
-                            mode="basic"
-                            name="demo[]"
-                            url="https://www.primefaces.org/cdn/api/upload.php"
-                            accept="image/*"
-                            [maxFileSize]=1000000
-                            (onUpload)="onBasicUploadAuto($event)"
-                            [auto]="true"
-                            [chooseIcon]="iconUpload"
-                            chooseLabel="Unggah Foto"/>
+                    <p-fileUpload
+                        mode="basic"
+                        name="demo[]"
+                        url="https://www.primefaces.org/cdn/api/upload.php"
+                        accept="image/*"
+                        [maxFileSize]=1000000
+                        (onUpload)="onBasicUploadAuto($event)"
+                        [auto]="true"
+                        [chooseIcon]="iconUpload"
+                        chooseLabel="Unggah Foto" />
 
-                            <div class="leading-column flex-column with-gap-large">
-                                <div class="flex-column with-gap-small">
-                                    <label for="inputJudulBerita">Judul</label>
-                                    <input
-                                        pInputText
-                                        id="inputJudulBerita"
-                                        formControlName="judulBerita" />
-                                </div>
-                                <div class="flex-column with-gap-small">
-                                    <label for="inputKonten">Konten</label>
-                                    <textarea
-                                        pInputTextarea
-                                        id="inputKonten"
-                                        formControlName="konten"
-                                        [autoResize]="true"
-                                        ></textarea>
-                                </div>
-                                <div class="flex-column with-gap-small">
-                                    <label for="inputTanggalKirim">Tanggal</label>
-                                    <p-calendar
-                                        id="inputTanggalKirim"
-                                        formControlName="tanggalKirim"
-                                        dateFormat="dd-mm-yy"
-                                        [touchUI]="true"/>
-                                </div>
-                                <div class="flex-column with-gap-small">
-                                    <label for="inputPenulis">Penulis</label>
-                                    <input
-                                        pInputTextarea
-                                        id="inputPenulis"
-                                        formControlName="penulis" />
-                                </div>
-                            </div>
-
-
+                    <div class="leading-column flex-column with-gap-large">
+                        <div class="flex-column with-gap-small">
+                            <label for="inputJudulBerita">Judul</label>
+                            <input
+                                pInputText
+                                id="inputJudulBerita"
+                                formControlName="judulBerita" />
+                        </div>
+                        <div class="flex-column with-gap-small">
+                            <label for="inputKonten">Konten</label>
+                            <textarea
+                                pInputTextarea
+                                id="inputKonten"
+                                formControlName="konten"
+                                [autoResize]="true"></textarea>
+                        </div>
+                        <div class="flex-column with-gap-small">
+                            <label for="inputTanggalKirim">Tanggal</label>
+                            <p-calendar
+                                id="inputTanggalKirim"
+                                formControlName="tanggalKirim"
+                                dateFormat="dd-mm-yy"
+                                [touchUI]="true" />
+                        </div>
+                        <div class="flex-column with-gap-small">
+                            <label for="inputPenulis">Penulis</label>
+                            <input
+                                pInputTextarea
+                                id="inputPenulis"
+                                formControlName="penulis" />
+                        </div>
                     </div>
 
-                    <div class="flex-row gravity-end with-gap-small margin-top">
 
-                        <button
-                            pButton
-                            pRipple
-                            class="outlined"
-                            (click)="onCancel()">
-                            <h4>
-                                Batalkan
-                            </h4>
-                        </button>
+                </div>
 
-                        <button
-                            pButton
-                            pRipple
-                            (click)="onSave()">
-                            <h4>
-                                Simpan Perubahan
-                            </h4>
-                        </button>
-                    </div>
+                <div class="flex-row gravity-end with-gap-small margin-top">
 
-                </form>
+                    <button
+                        pButton
+                        pRipple
+                        class="outlined"
+                        (click)="onCancel()">
+                        <h4>
+                            Batalkan
+                        </h4>
+                    </button>
 
-            </div>
+                    <button
+                        pButton
+                        pRipple
+                        (click)="onSave()">
+                        <h4>
+                            Simpan Perubahan
+                        </h4>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
         } @else {
-            <no-data
-                imageSource="assets/icons/dokumen/dokumen_icon.png"
-                description="Pilih Salah Satu Berita Untuk Melihat Detail atau Mengubah"/>
+        <no-data
+            imageSource="assets/icons/dokumen/dokumen_icon.png"
+            featureName="Berita" />
         }
     </div>
 </div>

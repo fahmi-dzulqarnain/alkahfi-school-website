@@ -1,4 +1,4 @@
-export class galleri{
+export class Galeri {
     judulFoto: string
     kontenFoto: string
     tanggalKirim: string

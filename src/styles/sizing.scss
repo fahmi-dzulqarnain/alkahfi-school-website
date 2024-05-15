@@ -22,6 +22,10 @@ $hugeSize: 8rem;
 
 .margin-top {
     margin-top: 1.5rem;
+
+    &-default {
+        margin-top: $defaultSize;
+    }
 }
 
 .icon-title-margin {

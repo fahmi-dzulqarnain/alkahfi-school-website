@@ -2,12 +2,12 @@
     <feature-title
         title="Data Fasilitas"
         iconPath="assets/icons/fasilitas/fasilitas_icon.png"
-        iconSize="large"/>
+        iconSize="large" />
 
     <div class="content-container">
         <div class="leading-column">
 
-            <data-menu-bar [buttons]="dataMenuButtons"/>
+            <data-menu-bar [buttons]="dataMenuButtons" />
 
             <p-card>
                 <div *ngFor="let akreditasi of akreditasiList">
@@ -25,7 +25,9 @@
             </p-card>
         </div>
 
-        <div *ngIf="isShowForm; then akreditasiFormTemplate else noSelectedData"></div>
+        <div
+            *ngIf="isShowForm; then akreditasiFormTemplate else noSelectedData">
+        </div>
 
         <ng-template #akreditasiFormTemplate>
             <div class="padding flex-column trailing-column">
@@ -33,7 +35,7 @@
 
                 <form
                     class="flex-column margin-top with-gap-large"
-                    [formGroup]="akreditasiForm" >
+                    [formGroup]="akreditasiForm">
 
                     <div class="flex-column with-gap">
                         <label for="inputTahunAkreditasi">
@@ -44,7 +46,7 @@
                             id="inputTahunAkreditasi"
                             formControlName="tahun"
                             view="year"
-                            dateFormat="yy"/>
+                            dateFormat="yy" />
                     </div>
 
                     <div class="flex-column with-gap">
@@ -56,7 +58,7 @@
                             id="inputPredikatNilai"
                             formControlName="predikatNilai"
                             [options]="predikatOptions"
-                            [multiple]="false"/>
+                            [multiple]="false" />
                     </div>
 
                     <div class="flex-row gravity-end with-gap-small margin-top">
@@ -87,7 +89,7 @@
         <ng-template #noSelectedData>
             <no-data
                 imageSource="assets/icons/akreditasi/no_akreditasi.png"
-                description="Pilih Salah Satu Akreditasi Untuk Melihat Detail atau Mengubah"/>
+                featureName="Fasilitas" />
         </ng-template>
     </div>
 </div>
