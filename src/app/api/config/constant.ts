@@ -1,8 +1,7 @@
-import { Injectable } from "@angular/core"
+import { Injectable } from '@angular/core'
 
-@Injectable()
-export class Constants {
-    private readonly SERVER_URL = "https://dummyjson.com"
-    public readonly API_ENDPOINT = this.SERVER_URL
-    public readonly ICON_PREFIX = "fa-solid fa-"
+export namespace Constants {
+    const SERVER_URL = 'http://localhost:802'
+    export const API_ENDPOINT = SERVER_URL
+    export const ICON_PREFIX = 'fa-solid fa-'
 }

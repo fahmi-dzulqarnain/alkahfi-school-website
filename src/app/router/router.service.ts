@@ -1,34 +1,40 @@
-import { Injectable } from '@angular/core'
+import { inject, Injectable } from '@angular/core'
 import { Router } from '@angular/router'
+import { RouterConstant } from './router.constant'
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class RouterService {
-
-    constructor (private router: Router) { }
+    private router = inject(Router)
 
     toAdmin = {
         berita: () => {
-            this.router.navigate(['admin', 'berita'])
+            this.router.navigateByUrl(RouterConstant.toAdmin.berita)
         },
         galeri: () => {
-            this.router.navigate(['admin', 'galeri'])
+            this.router.navigateByUrl(RouterConstant.toAdmin.galeri)
         },
         ringkasanData: () => {
-            this.router.navigate(['admin', 'ringkasan'])
-        }
+            this.router.navigateByUrl(RouterConstant.toAdmin.ringkasanData)
+        },
     }
 
     toSekolah = {
         informasi: () => {
-            this.router.navigate(['admin', 'sekolah', 'informasi'])
+            this.router.navigateByUrl(RouterConstant.toSekolah.informasi)
         },
         akreditasi: () => {
-            this.router.navigate(['admin', 'sekolah', 'akreditasi'])
+            this.router.navigateByUrl(RouterConstant.toSekolah.akreditasi)
         },
         fasilitas: () => {
-            this.router.navigate(['admin', 'sekolah', 'fasilitas'])
-        }
+            this.router.navigateByUrl(RouterConstant.toSekolah.fasilitas)
+        },
+    }
+
+    toAuth = {
+        login: () => {
+            this.router.navigateByUrl(RouterConstant.toLogin)
+        },
     }
 }

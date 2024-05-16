@@ -1,10 +1,14 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { BrowserModule } from '@angular/platform-browser'
-import { HttpClientModule } from '@angular/common/http'
+import {
+    HttpClientModule,
+    provideHttpClient,
+    withInterceptors,
+} from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from './router/app-routing.module'
 import { AppComponent } from './app.component'
 import { Constants } from './api/config/constant'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
@@ -49,7 +53,7 @@ import { QuestionsComponent } from './page-default/questions/questions.component
 import { AboutComponent } from './page-default/about/about.component'
 import { FooterComponent } from './page-default/footer/footer.component'
 import { AdminComponent } from './admin/admin.component'
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './admin/login/login.component'
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component'
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component'
 import { AdminGalleriesComponent } from './admin/admin-galleries/admin-galleries.component'
@@ -71,6 +75,7 @@ import { DataMenuBarComponent } from './components/data-menu-bar/data-menu-bar.c
 import { DataMenuButtonComponent } from './components/data-menu-button/data-menu-button.component'
 import { FeatureTitleComponent } from './feature-title/feature-title.component'
 import { BeritaItemComponent } from './admin/admin-news/berita-item/berita-item.component'
+import { authInterceptor } from './api/auth/auth.interceptor'
 
 @NgModule({
     declarations: [
@@ -146,7 +151,7 @@ import { BeritaItemComponent } from './admin/admin-news/berita-item/berita-item.
         ToastModule,
         ToggleButtonModule,
     ],
-    providers: [ Constants ],
+    providers: [ provideHttpClient(withInterceptors([ authInterceptor ])) ],
     bootstrap: [ AppComponent ],
 })
 export class AppModule {}

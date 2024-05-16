@@ -3,31 +3,31 @@
 
     <logo-branding
         [isVerticalOrientation]="isVerticalOrientation"
-        [logoSize]="logoSize"/>
+        [logoSize]="logoSize" />
 
     <h2 class="center-content">Masuk Akun</h2>
 
-    <form [formGroup]="loginForm" >
+    <form [formGroup]="loginForm">
 
         <span class="p-float-label p-input-icon-left">
             <i class="input-icon">
-                <fa-icon [icon]="faUsername"/>
+                <fa-icon [icon]="faEnvelope" />
             </i>
 
             <input
                 pInputText
-                id="username"
-                formControlName="username"
-                pKeyFilter="alphanum" />
+                id="email"
+                formControlName="email"
+                pKeyFilter="email" />
 
-            <label htmlFor="username">
-                Username
+            <label htmlFor="email">
+                Email
             </label>
         </span>
 
         <span class="p-float-label p-input-icon-left">
             <i class="input-icon">
-                <fa-icon [icon]="faKey"/>
+                <fa-icon [icon]="faKey" />
             </i>
 
             <input
@@ -36,7 +36,7 @@
                 formControlName="password"
                 type="password"
                 [feedback]="false"
-                [pKeyFilter]="blockChars"/>
+                [pKeyFilter]="blockChars" />
 
             <label htmlFor="password">
                 Password
@@ -46,7 +46,8 @@
         <button
             pButton
             pRipple
-            class="button-login">
+            class="button-login"
+            (click)="onSubmit()">
             Masuk Akun
         </button>
     </form>

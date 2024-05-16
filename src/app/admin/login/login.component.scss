@@ -1,4 +1,4 @@
-@import '../../styles/colors.scss';
+@import 'src/styles.scss';
 
 form {
     display: flex;
@@ -9,7 +9,7 @@ span {
     margin-top: 1.5rem;
 }
 
-input  {
+input {
     width: 20rem;
 }
 
