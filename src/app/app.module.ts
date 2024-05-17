@@ -67,15 +67,22 @@ import { LogoBrandingComponent } from './components/logo-branding/logo-branding.
 import { MenuBarComponent } from './admin/menu/menu-bar/menu-bar.component'
 import { MenuProfileComponent } from './admin/menu/menu-profile/menu-profile.component'
 import { AdminContainerComponent } from './admin/admin-container/admin-container.component'
-import { AdminSekolahInformasiComponent } from './admin/sekolah/admin-sekolah-informasi/admin-sekolah-informasi.component'
-import { AdminSekolahAkreditasiComponent } from './admin/sekolah/admin-sekolah-akreditasi/admin-sekolah-akreditasi.component'
-import { AdminSekolahFasilitasComponent } from './admin/sekolah/admin-sekolah-fasilitas/admin-sekolah-fasilitas.component'
+import { AdminSekolahInformasiComponent } from './admin/admin-sekolah/admin-sekolah-informasi/admin-sekolah-informasi.component'
+import { AdminSekolahAkreditasiComponent } from './admin/admin-sekolah/admin-sekolah-akreditasi/admin-sekolah-akreditasi.component'
+import { AdminSekolahFasilitasComponent } from './admin/admin-sekolah/admin-sekolah-fasilitas/admin-sekolah-fasilitas.component'
 import { NoDataComponent } from './components/no-data/no-data.component'
 import { DataMenuBarComponent } from './components/data-menu-bar/data-menu-bar.component'
 import { DataMenuButtonComponent } from './components/data-menu-button/data-menu-button.component'
 import { FeatureTitleComponent } from './feature-title/feature-title.component'
 import { BeritaItemComponent } from './admin/admin-news/berita-item/berita-item.component'
 import { authInterceptor } from './api/auth/auth.interceptor'
+import { CommonModule } from '@angular/common'
+import { ImageContainerComponent } from './components/image-container/image-container.component'
+import { CardOverviewComponent } from './components/card-overview/card-overview.component'
+import { BeritaService } from './api/admin/berita/berita.service'
+import { FAQService } from './api/admin/faq/faq.service'
+import { FasilitasService } from './api/admin/fasilitas/fasilitas.service'
+import { GaleriService } from './api/admin/galeri/galeri.service'
 
 @NgModule({
     declarations: [
@@ -91,12 +98,14 @@ import { authInterceptor } from './api/auth/auth.interceptor'
         AdminSekolahFasilitasComponent,
         AdminSekolahInformasiComponent,
         AppComponent,
+        CardOverviewComponent,
         DataMenuBarComponent,
         DataMenuButtonComponent,
         FeatureTitleComponent,
         FooterComponent,
         GalleryComponent,
         HeaderComponent,
+        ImageContainerComponent,
         LoginComponent,
         LogoBrandingComponent,
         MenuBarComponent,
@@ -124,6 +133,7 @@ import { authInterceptor } from './api/auth/auth.interceptor'
         CalendarModule,
         CardModule,
         ChipModule,
+        CommonModule,
         ConfirmDialogModule,
         DataViewModule,
         DropdownModule,
@@ -151,7 +161,13 @@ import { authInterceptor } from './api/auth/auth.interceptor'
         ToastModule,
         ToggleButtonModule,
     ],
-    providers: [ provideHttpClient(withInterceptors([ authInterceptor ])) ],
+    providers: [
+        BeritaService,
+        FAQService,
+        FasilitasService,
+        GaleriService,
+        provideHttpClient(withInterceptors([ authInterceptor ])),
+    ],
     bootstrap: [ AppComponent ],
 })
 export class AppModule {}

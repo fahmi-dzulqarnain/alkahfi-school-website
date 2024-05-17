@@ -11,11 +11,11 @@
     --text-light: #767268;
     --extra-light: #ffffff;
     --max-width: 1200px;
-    --mat-expansion-header-text-font: 'Quicksand', sans-serif;
+    --mat-expansion-header-text-font: 'DM Sand', sans-serif;
     /*
         Fonts
     */
-    --body-font: 'Quicksand', sans-serif;
+    --body-font: 'DM Sans', sans-serif;
     --big-font-size: 2rem;
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
@@ -56,7 +56,12 @@
     font-family: var(--body-font);
 }
 
-p, h1, h2, h3, h4, h5 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
     margin: 0;
 }
 

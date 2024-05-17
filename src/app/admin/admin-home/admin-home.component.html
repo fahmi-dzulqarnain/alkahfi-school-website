@@ -1,1 +1,25 @@
-<p>admin-home works!</p>
+<div class="page-container">
+    <h2>Ringkasan Data</h2>
+
+    <div class="cards-container">
+        <card-overview
+            titleOverview="Berita"
+            countOverview="{{ beritaCount() }}"
+            imageURL="assets/icons/berita/berita_icon.png" />
+
+        <card-overview
+            titleOverview="FAQ"
+            countOverview="{{ faqCount() }}"
+            imageURL="assets/icons/faq/faq_icon.png" />
+
+        <card-overview
+            titleOverview="Fasilitas"
+            countOverview="{{ fasilitasCount() }}"
+            imageURL="assets/icons/fasilitas/fasilitas_icon.png" />
+
+        <card-overview
+            titleOverview="Galeri"
+            countOverview="{{ galeriCount() }}"
+            imageURL="assets/icons/galeri/galeri_icon.png" />
+    </div>
+</div>

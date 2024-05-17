@@ -1,7 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http'
+import { catchError, throwError } from 'rxjs'
 
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
-    const token = localStorage.getItem('accessToken')
+    const token = sessionStorage.getItem('accessToken')
     if (token) {
         request = request.clone({
             setHeaders: {
@@ -9,5 +10,9 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
             },
         })
     }
-    return next(request)
+    return next(request).pipe(
+        catchError(error => {
+            return throwError(() => error)
+        })
+    )
 }

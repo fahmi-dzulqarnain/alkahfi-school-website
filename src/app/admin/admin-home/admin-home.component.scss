@@ -1,0 +1,14 @@
+@import "src/styles.scss";
+
+.cards-container {
+    @extend .flex-row;
+
+    align-items: flex-start;
+    gap: 1.5rem;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+.cards-container>card-overview {
+    flex: 1 1 0%;
+}

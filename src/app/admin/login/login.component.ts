@@ -53,12 +53,10 @@ export class LoginComponent implements OnInit {
             )
             .subscribe({
                 next: response => {
-                    localStorage.setItem(
+                    sessionStorage.setItem(
                         'accessToken',
                         response.data.accessToken
                     )
-
-                    this.authService.currentUser.set(response.data)
 
                     this.router.toAdmin.ringkasanData()
                 },

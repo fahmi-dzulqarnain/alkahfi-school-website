@@ -6,9 +6,9 @@ import { AdminHomeComponent } from '../admin/admin-home/admin-home.component'
 import { AdminNewsComponent } from '../admin/admin-news/admin-news.component'
 import { AdminGalleriesComponent } from '../admin/admin-galleries/admin-galleries.component'
 import { AdminContainerComponent } from '../admin/admin-container/admin-container.component'
-import { AdminSekolahInformasiComponent } from '../admin/sekolah/admin-sekolah-informasi/admin-sekolah-informasi.component'
-import { AdminSekolahAkreditasiComponent } from '../admin/sekolah/admin-sekolah-akreditasi/admin-sekolah-akreditasi.component'
-import { AdminSekolahFasilitasComponent } from '../admin/sekolah/admin-sekolah-fasilitas/admin-sekolah-fasilitas.component'
+import { AdminSekolahInformasiComponent } from '../admin/admin-sekolah/admin-sekolah-informasi/admin-sekolah-informasi.component'
+import { AdminSekolahAkreditasiComponent } from '../admin/admin-sekolah/admin-sekolah-akreditasi/admin-sekolah-akreditasi.component'
+import { AdminSekolahFasilitasComponent } from '../admin/admin-sekolah/admin-sekolah-fasilitas/admin-sekolah-fasilitas.component'
 import { authGuard } from '../api/auth/guard/auth.guard'
 
 const routes: Routes = [
@@ -17,11 +17,20 @@ const routes: Routes = [
     {
         path: 'admin',
         component: AdminContainerComponent,
-        canActivate: [ authGuard ],
+        canActivateChild: [ authGuard ],
         children: [
-            { path: 'berita', component: AdminNewsComponent },
-            { path: 'galeri', component: AdminGalleriesComponent },
-            { path: 'ringkasan', component: AdminHomeComponent },
+            {
+                path: 'berita',
+                component: AdminNewsComponent,
+            },
+            {
+                path: 'galeri',
+                component: AdminGalleriesComponent,
+            },
+            {
+                path: 'ringkasan',
+                component: AdminHomeComponent,
+            },
             {
                 path: 'sekolah',
                 children: [

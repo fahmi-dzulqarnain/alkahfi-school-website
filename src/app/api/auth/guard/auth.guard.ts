@@ -5,16 +5,15 @@ import { RouterService } from 'src/app/router/router.service'
 export const authGuard = () => {
     const authServices = inject(AuthService)
     const routeTo = inject(RouterService)
+    const accessToken = sessionStorage.getItem('accessToken')
 
-    if (authServices.currentUser() === undefined) {
+    if (accessToken === null) {
         routeTo.toAuth.login()
-        return false
     }
 
-    if (authServices.currentUser()) {
-        return true
-    } else {
-        routeTo.toAuth.login()
-        return false
-    }
+    authServices.validateToken(accessToken).then(isTokenValid => {
+        if (isTokenValid === false) {
+            routeTo.toAuth.login()
+        }
+    })
 }

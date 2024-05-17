@@ -1,0 +1,26 @@
+@import "src/styles/typography.scss";
+@import "src/styles/colors.scss";
+@import "src/styles.scss";
+
+.card-overview {
+    @extend .flex-row;
+
+    align-items: center;
+    background-color: $lightYellow;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.title-overview {
+    color: $black;
+    font-size: $defaultFontSize;
+    font-weight: 600;
+}
+
+.count-overview {
+    color: $black;
+    font-size: $bigFontSize;
+    font-weight: 500;
+}

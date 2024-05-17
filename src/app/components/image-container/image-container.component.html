@@ -1,0 +1,15 @@
+<div class="img-container">
+    <img
+        alt="image-container"
+        src="{{ imageSource }}"
+        [ngClass]="isImageLoading ? 'hide' : 'visible'"
+        (load)="imageLoaded()"
+        [style.height]="imageHeight"
+        [style.width]="imageWidth" />
+
+    <p-skeleton
+        borderRadius="1rem"
+        [ngClass]="isImageLoading ? 'visible' : 'hide'"
+        height="{{ imageHeight }}"
+        width="{{ imageWidth }}" />
+</div>
