@@ -1,97 +1,124 @@
-<div class="padding flex-column">
-    <feature-title
-        title="Berita"
-        iconPath="assets/icons/berita/berita_icon.png"
-        iconSize="large" />
+<script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css"
+    rel="stylesheet">
 
-    <div class="content-container">
-        <div class="leading-column">
-            <data-menu-bar [buttons]="dataMenuButtons" />
-            <p-card>
-                @for(berita of beritaList; track $index) {
-                <div class="flex-column with-gap clickable-with-divider padding-default"
-                    (click)="onClickDetail(berita)">
-                    <h3>{{ berita.judulBerita }}</h3>
-                    <p>{{ berita.konten }}</p>
-                    <div class="text-year">
-                        <div class="flex-row with-gap">
-                            <div class="sub__details"><span
-                                    class="ri-time-fill"></span> {{
-                                berita.tanggalKirim }}</div>
-                            <div class="sub__details"><span
-                                    class="ri-user-fill"></span> {{
-                                berita.penulis }} </div>
-                        </div>
-                    </div>
+<div class="flex-column">
+    <div class="content-container-no-margin">
+        @if (isDataExists()) {
+        <div class="
+            leading-column-small
+            auto-height
+            padding
+            white-background
+            sidebar">
+
+            <feature-title
+                title="Daftar Berita"
+                iconPath="assets/icons/berita/berita_icon.png"
+                iconSize="medium" />
+
+            <data-menu-bar
+                [buttons]="dataMenuButtons"
+                [isButtonCentered]="true"
+                (searchKeyword)="onSearch($event)"
+                class="padding-default" />
+
+            @for(berita of beritaList; track $index) {
+            <div class="flex-column
+                with-gap
+                clickable-with-divider
+                padding-default"
+                (click)="onClickDetail(berita)">
+
+                <h3>{{ berita.judul }}</h3>
+                <p>{{ berita.kontenPreview }}</p>
+                <div class="flex-row with-gap-tiny">
+                    <span
+                        class="ri-time-fill margin-center-vertical"></span>
+                    <p>{{ berita.createdAt }}</p>
                 </div>
-                }
-            </p-card>
+            </div>
+            }
+
+            <p-paginator
+                [first]="first"
+                [rows]="limit"
+                [totalRecords]="totalRecords()"
+                (onPageChange)="onPageChange($event)"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="{first} - {last} dari {totalRecords}"
+                [showPageLinks]="false"
+                [showFirstLastIcon]="false" />
         </div>
+        }
 
         @if(isShowForm) {
-        <div class="padding flex-column trailing-column">
-            <h2>{{ formTitle }}</h2>
+        <div class="
+            flex-column
+            padding
+            margin-top-default"
+            [ngClass]="isDataExists() ? 'trailing-column-big' : 'container-width'">
 
             <form
-                class="flex-column margin-top with-gap-large"
+                class="flex-column margin-top with-gap-large container-width"
                 [formGroup]="beritaForm">
 
-                <div class="flex-column with-gap">
-                    <label>Gambar Berita</label>
-                    <p-image
-                        class="img-news-placeholder"
-                        [src]="imgSource"
-                        alt="logo sekolah fajar ilahi"
-                        [preview]="true" />
-
-                    <p-fileUpload
-                        mode="basic"
-                        name="demo[]"
-                        url="https://www.primefaces.org/cdn/api/upload.php"
-                        accept="image/*"
-                        [maxFileSize]=1000000
-                        (onUpload)="onBasicUploadAuto($event)"
-                        [auto]="true"
-                        [chooseIcon]="iconUpload"
-                        chooseLabel="Unggah Foto" />
-
-                    <div class="leading-column flex-column with-gap-large">
-                        <div class="flex-column with-gap-small">
-                            <label for="inputJudulBerita">Judul</label>
-                            <input
-                                pInputText
-                                id="inputJudulBerita"
-                                formControlName="judulBerita" />
-                        </div>
-                        <div class="flex-column with-gap-small">
-                            <label for="inputKonten">Konten</label>
-                            <textarea
-                                pInputTextarea
-                                id="inputKonten"
-                                formControlName="konten"
-                                [autoResize]="true"></textarea>
-                        </div>
-                        <div class="flex-column with-gap-small">
-                            <label for="inputTanggalKirim">Tanggal</label>
-                            <p-calendar
-                                id="inputTanggalKirim"
-                                formControlName="tanggalKirim"
-                                dateFormat="dd-mm-yy"
-                                [touchUI]="true" />
-                        </div>
-                        <div class="flex-column with-gap-small">
-                            <label for="inputPenulis">Penulis</label>
-                            <input
-                                pInputTextarea
-                                id="inputPenulis"
-                                formControlName="penulis" />
-                        </div>
-                    </div>
-
-
+                <div class="flex-column with-gap-small">
+                    <label
+                        for="inputJudulBerita"
+                        class="bold">
+                        Judul
+                    </label>
+                    <input
+                        pInputText
+                        id="inputJudulBerita"
+                        formControlName="judul" />
                 </div>
 
-                <div class="flex-row gravity-end with-gap-small margin-top">
+                <div class="flex-row with-gap">
+
+                    <div class="flex-column with-gap full-width">
+                        <label class="bold">Gambar Berita</label>
+
+                        <image-uploader
+                            [isSupportMultipleFiles]="false"
+                            [imagePlaceholder]="beritaForm.get('gambarIlustrasi').value"
+                            (gambarIDs)="gambarIDs = $event" />
+                    </div>
+
+                    <div class="flex-column with-gap-large"
+                        [ngClass]="isDataExists() ? '' : 'full-width'">
+                        <div class="flex-column with-gap-small">
+                            <label
+                                for="inputStatus"
+                                class="bold">
+                                Status
+                            </label>
+                            <p-selectButton
+                                id="inputStatus"
+                                [options]="statusOptions"
+                                formControlName="status"
+                                optionLabel="name"
+                                optionValue="value" />
+                        </div>
+                        <div class="flex-column with-gap-small">
+                            <label
+                                for="inputKonten"
+                                class="bold">
+                                Konten
+                            </label>
+                            <p-editor
+                                formControlName="kontenHTML"
+                                [style]="{ height: '35rem' }" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="
+                    flex-row
+                    gravity-end
+                    with-gap-small
+                    margin-vertical">
 
                     <button
                         pButton
@@ -114,12 +141,14 @@
                 </div>
 
             </form>
-
         </div>
         } @else {
         <no-data
-            imageSource="assets/icons/dokumen/dokumen_icon.png"
-            featureName="Berita" />
+            imageSource="assets/icons/berita/berita_icon.png"
+            featureName="Berita"
+            [hasData]="isDataExists()"
+            [ngClass]="isDataExists() ? 'big' : 'full-width'"
+            (onAddData)="onAdd()" />
         }
     </div>
 </div>

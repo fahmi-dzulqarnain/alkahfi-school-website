@@ -1,8 +1,19 @@
-<div class="flex-row data-menu-bar">
-    <div *ngFor="let button of buttons">
-        <data-menu-button
-            [icon]="button.icon"
-            [title]="button.title"
-            [onClick]="button.onClick"/>
-    </div>
+<div
+    class="flex-row data-menu-bar"
+    [ngClass]="{'centered-buttons': isButtonCentered()}">
+
+    @for (button of buttons(); track $index) {
+    <data-menu-button
+        [icon]="button.icon"
+        [title]="button.title"
+        [onClick]="button.onClick" />
+    }
+    <p-iconField iconPosition="right">
+        <p-inputIcon styleClass="pi pi-search" />
+        <input
+            type="text"
+            pInputText
+            placeholder="Cari..."
+            (keyup)="onSearch($event)" />
+    </p-iconField>
 </div>

@@ -1,0 +1,116 @@
+@if (isSupportMultipleFiles()) {
+<p-fileUpload
+    name="images"
+    accept="image/*"
+    invalidFileSizeMessageSummary="Ukuran File Terlalu Besar"
+    invalidFileSizeMessageDetail="Maksimal ukuran file adalah 1.5 MB"
+    [customUpload]="true"
+    [multiple]="isSupportMultipleFiles()"
+    [maxFileSize]="1500000"
+    (onUpload)="onTemplatedUpload($event)"
+    (onSelect)="onSelectedFiles($event)"
+    (uploadHandler)="onUploadManually($event)">
+
+    <ng-template
+        pTemplate="header"
+        let-files
+        let-chooseCallback="chooseCallback"
+        let-uploadCallback="uploadCallback">
+
+        <div class="flex-column">
+            <div class="flex-row">
+                <p-button (onClick)="choose(chooseCallback)" />
+                <p-button
+                    (onClick)="uploadEvent(uploadCallback)"
+                    [disabled]="!files || files.length === 0" />
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        @if (files.length > 0) {
+        <h4>{{ title }}</h4>
+        <div class="flex-row margin-top with-gap">
+            @for (file of files; track $index) {
+            <div class="image-container">
+                <img
+                    [alt]="file.name"
+                    [src]="file.objectURL"
+                    class="image-preview" />
+                <div class="overlay"></div>
+                <div class="image-detail flex-column">
+                    <span>{{ file.name }}</span>
+                    <small>{{ formatSize(file.size) }}</small>
+                </div>
+
+                <fa-icon
+                    class="icon-button absolute-top-right"
+                    (click)="onRemoveTemplatingFile($index, file)"
+                    [icon]="iconRemove"
+                    [ngClass]="isUploadFinished() ? 'hide' : 'visible'" />
+            </div>
+            }
+        </div>
+        } @else {
+        <div class="flex-column container-width">
+            <fa-icon
+                [icon]="iconUpload"
+                class="icon-large" />
+            <p class="margin-horizontal-auto margin-top-small">
+                Tarik dan lepas gambar kesini atau tekan tombol unggah untuk
+                memilih gambar
+            </p>
+        </div>
+        }
+    </ng-template>
+    <ng-template pTemplate="file"> </ng-template>
+</p-fileUpload>
+} @else {
+<div class="flex-column with-gap">
+    @defer (when isUploadFinished() && uploadedFiles.length > 0) {
+    <div class="flex-column">
+        <p-image
+            class="img-news-placeholder"
+            [alt]="uploadedFiles[0].name"
+            [src]="uploadedFiles[0].objectURL"
+            [preview]="true" />
+        <div class="flex-column">
+            <span class="bold">{{ uploadedFiles[0].name }}</span>
+            <small>{{ formatSize(uploadedFiles[0].size) }}</small>
+        </div>
+    </div>
+    } @placeholder {
+    @if (imagePlaceholder()) {
+    <p-image
+        class="img-news-placeholder"
+        src="http://localhost:802/{{ imagePlaceholder() }}"
+        [preview]="true" />
+    } @else {
+    <div class="image-placeholder">
+        <div class="margin-auto flex-column">
+            <fa-icon
+                [icon]="iconImage"
+                class="icon-large-white" />
+            <p class="margin-horizontal-auto margin-top-small">
+                Gambar akan ditampilkan disini apabila berhasil diunggah
+            </p>
+        </div>
+    </div>
+    }
+    }
+
+    <p-fileUpload
+        accept="image/*"
+        chooseLabel="Pilih & Unggah"
+        class="full-width"
+        mode="basic"
+        name="images"
+        invalidFileSizeMessageSummary="Ukuran File Terlalu Besar"
+        invalidFileSizeMessageDetail="Maksimal ukuran file adalah 1.5 MB"
+        [customUpload]="true"
+        (uploadHandler)="onUploadManually($event)"
+        (onUpload)="onTemplatedUpload($event)"
+        [maxFileSize]="1500000"
+        [auto]="true" />
+</div>
+}

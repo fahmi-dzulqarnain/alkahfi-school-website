@@ -57,6 +57,20 @@ export class LoginComponent implements OnInit {
                         'accessToken',
                         response.data.accessToken
                     )
+                    sessionStorage.setItem('idUser', response.data.akun.id)
+                    sessionStorage.setItem(
+                        'idSekolah',
+                        response.data.akun.sekolah[0].id
+                    )
+
+                    const features = response.data.akun.role?.features
+
+                    if (features) {
+                        sessionStorage.setItem(
+                            'features',
+                            JSON.stringify(features)
+                        )
+                    }
 
                     this.router.toAdmin.ringkasanData()
                 },

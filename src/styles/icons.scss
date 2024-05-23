@@ -3,3 +3,29 @@
 @import "src/assets/fontawesome-free-6.4.0-web/scss/fontawesome.scss";
 @import "src/assets/fontawesome-free-6.4.0-web/scss/brands.scss";
 @import "src/assets/fontawesome-free-6.4.0-web/scss/solid.scss";
+@import "colors.scss";
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: $white;
+    transition: color 0.3s;
+
+    &:hover {
+        color: $rose;
+    }
+}
+
+.icon-large {
+    @extend .margin-horizontal-auto;
+    width: auto;
+    font-size: 3rem;
+    color: $darkSilver;
+
+    &-white {
+        @extend .icon-large;
+        color: $white;
+    }
+}

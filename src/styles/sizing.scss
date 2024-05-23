@@ -1,3 +1,5 @@
+@import 'src/styles/breakpoint.scss';
+
 $tinySize: 0.5rem;
 $smallerSize: 0.75rem;
 $smallSize: 0.8rem;
@@ -6,10 +8,19 @@ $mediumSize: 1.5rem;
 $largeSize: 2rem;
 $bigSize: 3.5rem;
 $biggerSize: 4rem;
+$lessHugeSize: 5rem;
 $hugeSize: 8rem;
 
 .padding {
     padding: 1.5rem;
+
+    &-top {
+        padding-top: 1.5rem;
+
+        &-large {
+            padding-top: $largeSize;
+        }
+    }
 
     &-default {
         padding: $defaultSize;
@@ -20,11 +31,52 @@ $hugeSize: 8rem;
     }
 }
 
-.margin-top {
-    margin-top: 1.5rem;
+.margin {
+    margin: 1.5rem;
+
+    &-top {
+        margin-top: 1.5rem;
+
+        &-small {
+            margin-top: $smallSize;
+        }
+
+        &-default {
+            margin-top: $defaultSize;
+        }
+
+        &-lessHuge {
+            margin-top: $lessHugeSize;
+        }
+    }
+
+    &-vertical {
+        margin: 1.5rem 0;
+
+        &-default {
+            margin: $defaultSize 0;
+        }
+    }
+
+    &-center-vertical {
+        margin: auto 0;
+    }
+
+    &-horizontal-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &-auto {
+        margin: auto;
+    }
 
     &-default {
-        margin-top: $defaultSize;
+        margin: $defaultSize;
+    }
+
+    &-small {
+        margin: $smallSize;
     }
 }
 
@@ -58,4 +110,28 @@ $hugeSize: 8rem;
 
 .gravity-end {
     margin-left: auto;
+}
+
+.auto-height {
+    height: auto;
+    padding-bottom: $hugeSize;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.container-width {
+    width: 75%;
+    @extend .margin-horizontal-auto;
+
+    @include breakpoint(small, max) {
+        width: 100%;
+    }
+}
+
+.absolute-top-right {
+    position: absolute;
+    top: $defaultSize;
+    right: $defaultSize;
 }

@@ -18,6 +18,14 @@ h3 {
     position: absolute;
 }
 
+.bring-to-front {
+    z-index: 10;
+}
+
+.send-to-back {
+    z-index: -1;
+}
+
 .centered {
     @extend .absolute;
     left: 50%;
@@ -60,6 +68,7 @@ h3 {
     margin: 1.2rem auto;
 
     &-no-margin {
+        @extend .content-container;
         margin: 0;
     }
 }
@@ -69,15 +78,32 @@ h3 {
     float: left;
     padding: 0 1rem 0 0;
 
+    &-small {
+        width: 30%;
+
+        @include breakpoint(small, max) {
+            width: 100%;
+        }
+    }
+
     @include breakpoint(small, max) {
         width: 100%;
     }
 }
 
 .trailing-column {
-    float: left;
     padding: 0 0 0 1rem;
     width: 50%;
+
+    &-big {
+        @extend .trailing-column;
+        margin-left: 30%;
+        width: 70%;
+
+        @include breakpoint(small, max) {
+            width: 100%;
+        }
+    }
 
     @include breakpoint(small, max) {
         width: 100%;
@@ -85,17 +111,40 @@ h3 {
     }
 }
 
-.leading-column-rigth {
-    width: 50%;
-    float: right;
-    padding: 0 1rem 0 0;
-
-    @include breakpoint(small, max) {
-        width: 100%;
-    }
-}
-
 no-data {
     margin-top: 25vh;
     min-width: 50%;
+
+    &.big {
+        margin-top: 35vh;
+        margin-left: 30%;
+        min-width: 70%;
+
+        @include breakpoint(small, max) {
+            margin-top: 10vh;
+            margin-bottom: 10vh;
+            min-width: 100%;
+        }
+    }
+
+    @include breakpoint(small, max) {
+        min-width: 100%;
+    }
+}
+
+.sidebar {
+    height: 100%;
+    background-color: #fff;
+    position: fixed !important;
+    z-index: 1;
+    overflow: auto;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+
+.visible {
+    display: block;
+}
+
+.hide {
+    display: none;
 }

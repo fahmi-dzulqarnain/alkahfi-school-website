@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { faAdd } from '@fortawesome/free-solid-svg-icons'
+import { Fasilitas } from 'src/app/api/admin/fasilitas/interface/fasilitas.interface'
 import { Akreditasi } from 'src/app/model/akreditasi.model'
 import { ButtonModel } from 'src/app/model/button.model'
 import { PredikatAkreditasi } from 'src/app/model/enum/predikat-akreditasi.enum'
 
 @Component({
-  selector: 'app-admin-sekolah-fasilitas',
-  templateUrl: './admin-sekolah-fasilitas.component.html',
-  styleUrls: ['./admin-sekolah-fasilitas.component.scss']
+    selector: 'app-admin-sekolah-fasilitas',
+    templateUrl: './admin-sekolah-fasilitas.component.html',
+    styleUrls: [ './admin-sekolah-fasilitas.component.scss' ],
 })
 export class AdminSekolahFasilitasComponent {
-
-    constructor(private builder: FormBuilder) {}
+    constructor (private builder: FormBuilder) {}
 
     akreditasiForm: FormGroup
     akreditasiList: Akreditasi[]
@@ -20,56 +20,62 @@ export class AdminSekolahFasilitasComponent {
     formTitle: string = ''
     isShowForm: boolean = false
     predikatOptions: PredikatAkreditasi[] = [
-        'A (Unggul)', 'B (Baik)', 'C (Cukup)',
-        'Sembunyikan'
+        'A (Unggul)',
+        'B (Baik)',
+        'C (Cukup)',
+        'Sembunyikan',
     ]
 
-    ngOnInit() {
+    ngOnInit () {
         this.akreditasiList = [
             {
                 tahun: '2020',
-                predikatNilai: 'A (Unggul)'
+                predikatNilai: 'A (Unggul)',
             },
             {
                 tahun: '2021',
-                predikatNilai: 'B (Baik)'
-            }
+                predikatNilai: 'B (Baik)',
+            },
         ]
 
         this.dataMenuButtons = [
             {
                 icon: faAdd,
                 title: 'Tambah',
-                onClick: () => { this.onAdd() }
-            }
+                onClick: () => {
+                    this.onAdd()
+                },
+            },
         ]
     }
 
-    onAdd() {
+    setFasilitasList (fasilitasList: Fasilitas[]) {}
+
+    onAdd () {
         this.akreditasiForm = this.builder.group({
             tahun: '',
-            predikatNilai: ''
+            predikatNilai: '',
         })
 
         this.formTitle = 'Tambah Akreditasi'
         this.isShowForm = true
     }
 
-    onClickDetail(akreditasi: Akreditasi) {
+    onClickDetail (akreditasi: Akreditasi) {
         this.akreditasiForm = this.builder.group({
             tahun: akreditasi.tahun,
-            predikatNilai: akreditasi.predikatNilai
+            predikatNilai: akreditasi.predikatNilai,
         })
 
         this.formTitle = 'Detail Akreditasi'
         this.isShowForm = true
     }
 
-    onCancel() {
+    onCancel () {
         this.isShowForm = false
     }
 
-    onSave() {
+    onSave () {
         // TODO: Save Before Close the Form
         this.onCancel()
     }

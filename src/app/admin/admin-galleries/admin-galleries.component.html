@@ -1,106 +1,122 @@
-<div class="padding flex-column">
-    <feature-title
-        title="Galeri"
-        iconPath="assets/icons/galeri/galeri_icon.png"
-        iconSize="large" />
+<div class="flex-column">
+    <div class="content-container-no-margin">
+        @if (isDataExists()) {
+        <div class="
+            leading-column-small
+            auto-height
+            padding
+            white-background
+            sidebar">
 
-    <div class="content-container">
-        <div class="leading-column">
-            <p-orderList [value]="galleriList"
-                [listStyle]="{ 'max-height': '30rem' }" header="List Foto"
-                filterBy="name" filterPlaceholder="Cari">
-                <ng-template pTemplate="galleri">
-                    @for(foto of galleriList; track $index) {
-                    <div class="flex flex-wrap p-2 align-items-center gap-3 clickable-with-divider padding-default"
-                        (click)="onClickDetail(foto)">
-                        <img [src]="imgSource" class="leading-column" />
-                        <div
-                            class="flex-1 flex flex-column gap-2 leading-column with-gap-small">
-                            <span class="font-bold">{{foto.judulFoto}}</span>
-                            <div class="flex align-items-center gap-2">
-                                <i class="pi pi-tag text-sm"></i>
-                                <span>{{foto.kontenFoto}}</span>
-                            </div>
-                            <div class="flex-row">
-                                <span
-                                    class="font-bold text-900">{{foto.penulis}}</span>
-                                <span
-                                    class="font-bold text-900">{{foto.tanggalKirim}}</span>
-                            </div>
-                        </div>
+            <feature-title
+                title="Daftar Galeri"
+                iconPath="assets/icons/galeri/galeri_icon.png"
+                iconSize="medium" />
 
-                    </div>
-                    }
-                </ng-template>
-            </p-orderList>
-            <data-menu-bar class="leading-column margin-top"
-                [buttons]="dataMenuButtons" />
+            <data-menu-bar
+                [buttons]="dataMenuButtons"
+                [isButtonCentered]="true"
+                (searchKeyword)="onSearch($event)"
+                class="padding-default" />
+
+            @for(galeri of galeriList; track $index) {
+            <div class="flex-column
+                with-gap
+                clickable-with-divider
+                padding-default"
+                (click)="onClickDetail(galeri)">
+
+                <h3>{{ galeri.judul }}</h3>
+                <p>{{ galeri.deskripsi }}</p>
+            </div>
+            }
+
+            <p-paginator
+                [first]="first"
+                [rows]="limit"
+                [totalRecords]="totalRecords()"
+                (onPageChange)="onPageChange($event)"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="{first} - {last} dari {totalRecords}"
+                [showPageLinks]="false"
+                [showFirstLastIcon]="false" />
         </div>
+        }
 
         @if(isShowForm) {
-        <div class="padding flex-column trailing-column">
-            <h2>{{ formTitle }}</h2>
+        <div class="
+            flex-column
+            padding
+            margin-top-default"
+            [ngClass]="isDataExists() ? 'trailing-column-big' : 'container-width'">
 
             <form
-                class="flex-column margin-top with-gap-large"
-                [formGroup]="galleriForm">
+                class="flex-column margin-top with-gap-large container-width"
+                [formGroup]="galeriForm">
 
-                <div class="flex-column with-gap">
-                    <label>Foto</label>
-                    <p-image
-                        class="img-news-placeholder"
-                        [src]="imgSource"
-                        alt="ini adalah sekolah fajar ilahi"
-                        [preview]="true" />
-
-                    <p-fileUpload
-                        mode="basic"
-                        name="demo[]"
-                        url="https://www.primefaces.org/cdn/api/upload.php"
-                        accept="image/*"
-                        [maxFileSize]=1000000
-                        (onUpload)="onBasicUploadAuto($event)"
-                        [auto]="true"
-                        [chooseIcon]="iconUpload"
-                        chooseLabel="Unggah Foto" />
-
-                    <div class="leading-column flex-column with-gap-large">
-                        <div class="flex-column with-gap-small">
-                            <label for="inputJudulBerita">Judul Foto</label>
-                            <input
-                                pInputText
-                                id="inputJudulBerita"
-                                formControlName="judulFoto" />
-                        </div>
-                        <div class="flex-column with-gap-small">
-                            <label for="inputKonten">Konten Foto</label>
-                            <textarea
-                                pInputTextarea
-                                id="inputKonten"
-                                formControlName="kontenFoto"
-                                [autoResize]="true"></textarea>
-                        </div>
-                        <div class="flex-column with-gap-small">
-                            <label for="inputTanggalKirim">Tanggal</label>
-                            <p-calendar
-                                id="inputTanggalKirim"
-                                formControlName="tanggalKirim"
-                                dateFormat="dd-mm-yy"
-                                [touchUI]="true" />
-                        </div>
-                        <div class="flex-column with-gap-small">
-                            <label for="inputPenulis">Penulis</label>
-                            <input
-                                pInputTextarea
-                                id="inputPenulis"
-                                formControlName="penulis" />
-                        </div>
-                    </div>
-
-
+                <div class="flex-column with-gap-small">
+                    <label
+                        for="inputJudulGaleri"
+                        class="bold">
+                        Judul
+                    </label>
+                    <input
+                        pInputText
+                        id="inputJudulGaleri"
+                        formControlName="judul" />
                 </div>
 
-                <div class="flex-row gravity-end with-gap-small margin-top">
+                @if (gambarURLs.length !== 0) {
+                <p-galleria
+                    class="margin-horizontal-auto"
+                    [value]="gambarURLs"
+                    [autoPlay]="true"
+                    [circular]="true"
+                    [responsiveOptions]="responsiveOptions"
+                    [numVisible]="5"
+                    [containerStyle]="{ 'max-width': '640px' }">
+                    <ng-template pTemplate="item" let-item>
+                        <img src="http://localhost:802/{{item}}"
+                            class="galeri-item" />
+                    </ng-template>
+                    <ng-template pTemplate="thumbnail" let-item>
+                        <div class="grid grid-nogutter justify-content-center">
+                            <img src="http://localhost:802/{{item}}"
+                                style="max-height: 5rem; object-fit: contain; " />
+                        </div>
+                    </ng-template>
+                </p-galleria>
+                }
+
+                <div class="flex-row with-gap-large">
+
+                    <div class="flex-column with-gap full-width">
+                        <label class="bold">Upload Gambar:</label>
+
+                        <image-uploader
+                            [isSupportMultipleFiles]="true"
+                            (gambarIDs)="gambarIDs = $event" />
+                    </div>
+                    <div class="flex-column with-gap-small">
+                        <label
+                            for="inputDeskripsi"
+                            class="bold">
+                            Deskripsi
+                        </label>
+                        <textarea
+                            pInputTextarea
+                            id="inputDeskripsi"
+                            [cols]="50"
+                            [rows]="5"
+                            formControlName="deskripsi"></textarea>
+                    </div>
+                </div>
+
+                <div class="
+                    flex-row
+                    gravity-end
+                    with-gap-small
+                    margin-vertical">
 
                     <button
                         pButton
@@ -123,13 +139,14 @@
                 </div>
 
             </form>
-
         </div>
         } @else {
         <no-data
-            imageSource="assets/icons/galeri/dimana_foto.png"
-            featureName="Galeri Foto" />
+            imageSource="assets/icons/galeri/galeri_icon.png"
+            featureName="Galeri"
+            [hasData]="isDataExists()"
+            [ngClass]="isDataExists() ? 'big' : 'full-width'"
+            (onAddData)="onAdd()" />
         }
-
     </div>
 </div>

@@ -15,3 +15,9 @@ p {
         width: 85%;
     }
 }
+
+button {
+    width: fit-content;
+    @extend .margin-top;
+    @extend .margin-horizontal-auto;
+}

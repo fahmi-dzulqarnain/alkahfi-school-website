@@ -1,8 +1,18 @@
 @import '../../../styles.scss';
 
 .data-menu-bar {
-    border-radius: $defaultSize;
+    border-radius: $smallerSize;
     border: 1px solid $darkOlive;
     background: $lightYellow;
     padding: $smallerSize;
+}
+
+.centered-buttons {
+    margin: auto;
+}
+
+p-iconfield {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
 }

@@ -1,12 +1,12 @@
 <div class="padding flex-column">
     <feature-title
-    title="Detail Sekolah"
-    iconPath="assets/icons/informasi/school_icon.png"
-    iconSize="large"/>
+        title="Detail Sekolah"
+        iconPath="assets/icons/informasi/school_icon.png"
+        iconSize="medium" />
 
     <form
         class="content-container flex-column margin-top"
-        [formGroup]="editForm" >
+        [formGroup]="editForm">
 
         <div class="leading-column flex-column with-gap-large">
 
@@ -95,7 +95,7 @@
                     (onUpload)="onBasicUploadAuto($event)"
                     [auto]="true"
                     [chooseIcon]="iconUpload"
-                    chooseLabel="Unggah Logo"/>
+                    chooseLabel="Unggah Logo" />
             </div>
 
             <div class="flex-column with-gap-small">
@@ -106,7 +106,7 @@
                     [options]="days"
                     [multiple]="true"
                     optionLabel="name"
-                    optionValue="value"/>
+                    optionValue="value" />
             </div>
 
             <div class="flex-column with-gap-small">
@@ -114,10 +114,10 @@
 
                 <div class="flex-row">
                     <p-calendar
-                    id="inputAwalBelajar"
-                    formControlName="jamAwalBelajar"
-                    [timeOnly]="true"
-                    [touchUI]="true"/>
+                        id="inputAwalBelajar"
+                        formControlName="jamAwalBelajar"
+                        [timeOnly]="true"
+                        [touchUI]="true" />
 
                     <span id="separator">s.d.</span>
 
@@ -125,7 +125,7 @@
                         id="inputAkhirBelajar"
                         formControlName="jamAkhirBelajar"
                         [timeOnly]="true"
-                        [touchUI]="true"/>
+                        [touchUI]="true" />
                 </div>
             </div>
 

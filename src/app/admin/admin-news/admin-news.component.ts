@@ -1,95 +1,183 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { faAdd } from '@fortawesome/free-solid-svg-icons';
-import { UploadEvent } from 'primeng/fileupload';
-import { Berita } from 'src/app/model/berita.model';
-import { ButtonModel } from 'src/app/model/button.model';
-import { CalendarModule } from 'primeng/calendar';
+import { Component, inject, signal } from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { faAdd } from '@fortawesome/free-solid-svg-icons'
+import { Berita } from 'src/app/admin/admin-news/model/interface/berita.model'
+import { ButtonModel } from 'src/app/model/button.model'
+import { BeritaService } from 'src/app/api/admin/berita/berita.service'
+import { BeritaResponse } from 'src/app/api/admin/berita/interface/berita-response.interface'
+import { FormTitle } from 'src/app/model/types/string.types'
+import { Feature } from 'src/app/model/enum/feature.enum'
+import { TitleOf } from 'src/app/model/form-title.model'
+import { StatusBeritaAllCase } from './model/enum/status-berita.enum'
+import { Option } from 'src/app/model/option.model'
+import { capitalize } from 'src/app/utilities/string.utilities'
+import { HttpStatusCode } from '@angular/common/http'
+import { PaginatorState } from 'primeng/paginator'
 
 @Component({
-  selector: 'app-admin-news',
-  templateUrl: './admin-news.component.html',
-  styleUrls: ['./admin-news.component.scss'],
+    selector: 'app-admin-news',
+    templateUrl: './admin-news.component.html',
+    styleUrls: [ './admin-news.component.scss' ],
 })
 export class AdminNewsComponent {
-
-    constructor(private builder: FormBuilder){}
+    private builder = inject(FormBuilder)
+    private beritaService = inject(BeritaService)
 
     beritaForm: FormGroup
-    beritaList: Berita[]
-    dataMenuButtons: ButtonModel[]
-    formTitle: string = ''
+    beritaList: Berita[] = []
+    dataMenuButtons: ButtonModel[] = []
     isShowForm: boolean = false
-    imgSource = "http://localhost:4200/assets/anak-sekolaah.jpg"
-    iconUpload = ""
+    formTitle: FormTitle = ''
+    isDataExists = signal<boolean>(this.beritaList.length > 0)
+    iconUpload = ''
+    statusOptions: Option[] = []
+    gambarIDs: string[] = []
+    first: number = 0
+    currentPage: number = 1
+    limit: number = 1
+    totalRecords = signal<number>(0)
 
-    ngOnInit() {
-
+    ngOnInit () {
         this.dataMenuButtons = [
             {
                 icon: faAdd,
                 title: 'Tambah',
-                onClick: () => { this.onAdd() }
-            }
+                onClick: () => {
+                    this.onAdd()
+                },
+            },
         ]
 
-        this.beritaList = [
-            {
-                judulBerita: 'Ayam berperestasi membaca internasional',
-                konten:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex cumque voluptates quod iste ad dolorem obcaecati error',
-                tanggalKirim: '2 Maret 2024',
-                penulis: 'admin'
-            },
-            {
-                judulBerita: 'Ayam kalah membaca internasional',
-                konten:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex cumque voluptates quod iste ad dolorem obcaecati error',
-                tanggalKirim: '3 Maret 2024',
-                penulis: 'admin'
-            },
-            {
-                judulBerita: 'Ayam terbang membaca internasional',
-                konten:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex cumque voluptates quod iste ad dolorem obcaecati error',
-                tanggalKirim: '5 Maret 2024',
-                penulis: 'admin'
-            }
-        ]
+        this.setBeritaList()
+        this.setStatusOptions()
     }
 
-    onAdd() {
-        this.beritaForm = this.builder.group({
-            judulBerita: '',
-            konten: '',
-            tanggalKirim: '',
-            penulis: ''
+    setBeritaList (
+        currentPage: number = 1,
+        limit: number = 10,
+        keyword?: string
+    ) {
+        this.limit = limit
+        this.beritaService
+            .getBeritaList(currentPage, limit, keyword)
+            .then((res: BeritaResponse) => {
+                const beritaListWithKontenPreviewAndRemoveHTML =
+                    res.beritaList.map((berita: Berita) => {
+                        return {
+                            ...berita,
+                            kontenPreview: `${berita.kontenHTML
+                                .replace(/<[^>]*>?/gm, '')
+                                .slice(0, 96)}...`,
+                            createdAt: new Date(
+                                berita.createdAt
+                            ).toLocaleDateString('id-ID', {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric',
+                            }),
+                        }
+                    })
 
+                this.totalRecords.set(res.totalRecords)
+                this.beritaList = beritaListWithKontenPreviewAndRemoveHTML
+                this.isDataExists.set(this.beritaList.length > 0)
+            })
+    }
+
+    onPageChange (event: PaginatorState) {
+        this.setBeritaList(event.page + 1, this.limit)
+    }
+
+    onSearch (keyword: string) {
+        console.log(keyword)
+        this.setBeritaList(this.currentPage, this.limit, keyword)
+    }
+
+    setStatusOptions () {
+        StatusBeritaAllCase.forEach((status: string) => {
+            this.statusOptions.push({
+                name: capitalize(status),
+                value: status,
+            })
+        })
+    }
+
+    onAdd () {
+        this.beritaForm = this.builder.group({
+            judul: '',
+            kontenHTML: '',
+            status: '',
+            gambarIlustrasi: '',
         })
 
-        this.formTitle = 'Tambah Berita'
+        this.formTitle = TitleOf.tambah(Feature.Berita)
         this.isShowForm = true
     }
 
-    onClickDetail(berita: Berita) {
+    onClickDetail (berita: Berita) {
         this.beritaForm = this.builder.group({
-            judulBerita: berita.judulBerita,
-            konten: berita.konten,
-            tanggalKirim: berita.tanggalKirim,
-            penulis: berita.penulis
+            id: berita.id,
+            judul: berita.judul,
+            kontenHTML: berita.kontenHTML,
+            gambarIlustrasi: berita.gambarIlustrasi,
+            status: berita.status,
+            penyusunID: berita.penyusunID,
         })
+        this.gambarIDs = []
+        const gambarID = berita.gambarIlustrasi?.split('.')[0]
 
-        this.formTitle = 'Detail Berita'
+        if (gambarID) {
+            this.gambarIDs.push(gambarID)
+        }
+
+        this.formTitle = TitleOf.detail(Feature.Berita)
         this.isShowForm = true
     }
 
-    onBasicUploadAuto(event: UploadEvent) {
-        //TODO:
-    }
-
-    onCancel() {
+    onCancel () {
         this.isShowForm = false
     }
 
-    onSave() {
-        // TODO: Save Before Close the Form
-        this.onCancel()
+    onSave () {
+        const beritaData = this.beritaForm.value
+        const gambarID = this.gambarIDs[0]
+        const sekolahID = sessionStorage.getItem('idSekolah')
+        const penyusunID = beritaData.penyusunID
+            ? beritaData.penyusunID
+            : sessionStorage.getItem('idUser')
+
+        if (!gambarID) {
+            console.error('Gambar Ilustrasi is Required')
+            return
+        }
+
+        const newBerita: Berita = {
+            judul: beritaData.judul,
+            gambarIlustrasi: this.gambarIDs[0],
+            kontenHTML: beritaData.kontenHTML,
+            status: beritaData.status,
+            penyusunID,
+            sekolahID,
+        }
+
+        if (newBerita) {
+            if (this.formTitle == TitleOf.tambah(Feature.Berita)) {
+                this.beritaService.addBerita(newBerita).then(response => {
+                    if (response.statusCode == HttpStatusCode.Created) {
+                        this.setBeritaList()
+                        this.onCancel()
+                    }
+                })
+            } else if (this.formTitle == TitleOf.detail(Feature.Berita)) {
+                this.beritaService
+                    .updateBerita(beritaData.id, newBerita)
+                    .then(response => {
+                        if (response.statusCode == HttpStatusCode.Ok) {
+                            this.setBeritaList()
+                            this.onCancel()
+                        }
+                    })
+            }
+        }
     }
 }

@@ -10,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './router/app-routing.module'
 import { AppComponent } from './app.component'
-import { Constants } from './api/config/constant'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import { AutoCompleteModule } from 'primeng/autocomplete'
@@ -22,9 +21,12 @@ import { ChipModule } from 'primeng/chip'
 import { ConfirmDialogModule } from 'primeng/confirmdialog'
 import { DataViewModule } from 'primeng/dataview'
 import { DropdownModule } from 'primeng/dropdown'
+import { EditorModule } from 'primeng/editor'
 import { FileUploadModule } from 'primeng/fileupload'
 import { GalleriaModule } from 'primeng/galleria'
+import { IconFieldModule } from 'primeng/iconfield'
 import { ImageModule } from 'primeng/image'
+import { InputIconModule } from 'primeng/inputicon'
 import { InputMaskModule } from 'primeng/inputmask'
 import { InputNumberModule } from 'primeng/inputnumber'
 import { InputTextareaModule } from 'primeng/inputtextarea'
@@ -73,8 +75,7 @@ import { AdminSekolahFasilitasComponent } from './admin/admin-sekolah/admin-seko
 import { NoDataComponent } from './components/no-data/no-data.component'
 import { DataMenuBarComponent } from './components/data-menu-bar/data-menu-bar.component'
 import { DataMenuButtonComponent } from './components/data-menu-button/data-menu-button.component'
-import { FeatureTitleComponent } from './feature-title/feature-title.component'
-import { BeritaItemComponent } from './admin/admin-news/berita-item/berita-item.component'
+import { FeatureTitleComponent } from './components/feature-title/feature-title.component'
 import { authInterceptor } from './api/auth/auth.interceptor'
 import { CommonModule } from '@angular/common'
 import { ImageContainerComponent } from './components/image-container/image-container.component'
@@ -83,6 +84,9 @@ import { BeritaService } from './api/admin/berita/berita.service'
 import { FAQService } from './api/admin/faq/faq.service'
 import { FasilitasService } from './api/admin/fasilitas/fasilitas.service'
 import { GaleriService } from './api/admin/galeri/galeri.service'
+import { GambarService } from './api/admin/shared/gambar/gambar.service'
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component'
+import { PaginatorModule } from 'primeng/paginator'
 
 @NgModule({
     declarations: [
@@ -125,7 +129,6 @@ import { GaleriService } from './api/admin/galeri/galeri.service'
         AppRoutingModule,
         AutoCompleteModule,
         AvatarModule,
-        BeritaItemComponent,
         BrowserAnimationsModule,
         BrowserModule,
         BrowserModule,
@@ -137,11 +140,15 @@ import { GaleriService } from './api/admin/galeri/galeri.service'
         ConfirmDialogModule,
         DataViewModule,
         DropdownModule,
+        EditorModule,
         FileUploadModule,
         FontAwesomeModule,
         GalleriaModule,
         HttpClientModule,
+        IconFieldModule,
+        ImageUploaderComponent,
         ImageModule,
+        InputIconModule,
         InputMaskModule,
         InputNumberModule,
         InputTextareaModule,
@@ -149,6 +156,7 @@ import { GaleriService } from './api/admin/galeri/galeri.service'
         KeyFilterModule,
         MenubarModule,
         OrderListModule,
+        PaginatorModule,
         PasswordModule,
         RatingModule,
         ReactiveFormsModule,
@@ -166,6 +174,7 @@ import { GaleriService } from './api/admin/galeri/galeri.service'
         FAQService,
         FasilitasService,
         GaleriService,
+        GambarService,
         provideHttpClient(withInterceptors([ authInterceptor ])),
     ],
     bootstrap: [ AppComponent ],

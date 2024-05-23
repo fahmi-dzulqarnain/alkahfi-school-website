@@ -1,5 +1,3 @@
-import { Injectable } from '@angular/core'
-
 export namespace Constants {
     const SERVER_URL = 'http://localhost:802'
     export const API_ENDPOINT = SERVER_URL
