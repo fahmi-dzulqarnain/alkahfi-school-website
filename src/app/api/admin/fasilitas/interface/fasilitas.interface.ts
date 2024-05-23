@@ -1,6 +1,7 @@
 export interface Fasilitas {
-    id: string
+    id?: string
     namaFasilitas: string
     deskripsi: string
     gambarIlustrasi?: string
+    sekolahID?: string
 }

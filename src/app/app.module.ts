@@ -87,6 +87,7 @@ import { GaleriService } from './api/admin/galeri/galeri.service'
 import { GambarService } from './api/admin/shared/gambar/gambar.service'
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component'
 import { PaginatorModule } from 'primeng/paginator'
+import { AkreditasiService } from './api/admin/akreditasi/akreditasi.service'
 
 @NgModule({
     declarations: [
@@ -170,6 +171,7 @@ import { PaginatorModule } from 'primeng/paginator'
         ToggleButtonModule,
     ],
     providers: [
+        AkreditasiService,
         BeritaService,
         FAQService,
         FasilitasService,

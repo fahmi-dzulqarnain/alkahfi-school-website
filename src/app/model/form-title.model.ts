@@ -1,3 +1,4 @@
+import { capitalize } from '../utilities/string.utilities'
 import { Feature } from './enum/feature.enum'
 import { FormTitle } from './types/string.types'
 
@@ -6,10 +7,10 @@ export class TitleOf {
         return `Daftar ${feature}`
     }
     public static detail (feature: Feature): FormTitle {
-        return `Detail ${feature}`
+        return `Detail ${capitalize(feature)}`
     }
     public static tambah (feature: Feature): FormTitle {
-        return `Tambah ${feature}`
+        return `Tambah ${capitalize(feature)}`
     }
     public static ubah (feature: Feature): FormTitle {
         return `Ubah ${feature}`

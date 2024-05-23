@@ -1,95 +1,102 @@
-<div class="padding flex-column">
-    <feature-title
-        title="Riwayat Akreditasi"
-        iconPath="assets/icons/akreditasi/akreditasi_icon.png"
-        iconSize="medium" />
+<div class="content-container-no-margin padding">
+    @if (isDataExists()) {
+    <div class="flex-column leading-column with-gap">
+        <feature-title
+            title="Data Akreditasi"
+            iconPath="assets/icons/akreditasi/akreditasi_icon.png"
+            iconSize="medium" />
 
-    <div class="content-container">
-        <div class="leading-column">
+        <data-menu-bar
+            [buttons]="dataMenuButtons"
+            (searchKeyword)="onSearch($event)" />
 
-            <data-menu-bar [buttons]="dataMenuButtons" />
+        <p-card>
+            @for (akreditasi of akreditasiList; track $index) {
+            <div
+                class="flex-column
+                clickable-with-divider
+                padding-default"
+                (click)="onClickDetail(akreditasi)">
 
-            <p-card>
-                <div *ngFor="let akreditasi of akreditasiList">
-                    <div
-                        class="flex-column clickable-with-divider padding-default"
-                        (click)="onClickDetail(akreditasi)">
+                <h3>{{ akreditasi.tahun }}</h3>
 
-                        <h3>{{ akreditasi.tahun }}</h3>
-
-                        <div class="text-year">
-                            Terakreditasi "{{ akreditasi.predikatNilai }}"
-                        </div>
-                    </div>
+                <div class="text-year">
+                    Terakreditasi "{{ akreditasi.nilai }}"
                 </div>
-            </p-card>
-        </div>
-
-        <div
-            *ngIf="isShowForm; then akreditasiFormTemplate else noSelectedData">
-        </div>
-
-        <ng-template #akreditasiFormTemplate>
-            <div class="padding flex-column trailing-column">
-                <h2>{{ formTitle }}</h2>
-
-                <form
-                    class="flex-column margin-top with-gap-large"
-                    [formGroup]="akreditasiForm">
-
-                    <div class="flex-column with-gap">
-                        <label for="inputTahunAkreditasi">
-                            Tahun Akreditasi
-                        </label>
-
-                        <p-calendar
-                            id="inputTahunAkreditasi"
-                            formControlName="tahun"
-                            view="year"
-                            dateFormat="yy" />
-                    </div>
-
-                    <div class="flex-column with-gap">
-                        <label for="inputPredikatNilai">
-                            Predikat Nilai
-                        </label>
-
-                        <p-selectButton
-                            id="inputPredikatNilai"
-                            formControlName="predikatNilai"
-                            [options]="predikatOptions"
-                            [multiple]="false" />
-                    </div>
-
-                    <div class="flex-row gravity-end with-gap-small margin-top">
-
-                        <button
-                            pButton
-                            pRipple
-                            class="outlined"
-                            (click)="onCancel()">
-                            <h4>
-                                Batalkan
-                            </h4>
-                        </button>
-
-                        <button
-                            pButton
-                            pRipple
-                            (click)="onSave()">
-                            <h4>
-                                Simpan Perubahan
-                            </h4>
-                        </button>
-                    </div>
-
-                </form>
             </div>
-        </ng-template>
-        <ng-template #noSelectedData>
-            <no-data
-                imageSource="assets/icons/akreditasi/no_akreditasi.png"
-                featureName="Akreditasi" />
-        </ng-template>
+            }
+        </p-card>
     </div>
+    }
+
+    @if (isShowForm()) {
+    <div
+        class="padding flex-column margin-top"
+        [ngClass]="isDataExists() ? 'trailing-column' : 'container-width'">
+
+        <form
+            class="flex-column with-gap-large container-width"
+            [formGroup]="akreditasiForm">
+
+            <h2>{{ formTitle }}</h2>
+
+            <div class="flex-column with-gap">
+                <label for="inputTahunAkreditasi">
+                    Tahun Akreditasi
+                </label>
+
+                <p-calendar
+                    id="inputTahunAkreditasi"
+                    formControlName="tahun"
+                    view="year"
+                    dateFormat="yy" />
+            </div>
+
+            <div class="flex-column with-gap">
+                <label for="inputPredikatNilai">
+                    Predikat Nilai
+                </label>
+
+                <p-selectButton
+                    id="inputPredikatNilai"
+                    formControlName="nilai"
+                    [options]="predikatOptions"
+                    [multiple]="false" />
+            </div>
+
+            <div class="
+                flex-row
+                gravity-end
+                with-gap-small
+                margin-vertical">
+
+                <button
+                    pButton
+                    pRipple
+                    class="outlined"
+                    (click)="onCancel()">
+                    <h4>
+                        Batalkan
+                    </h4>
+                </button>
+
+                <button
+                    pButton
+                    pRipple
+                    (click)="onSave()">
+                    <h4>
+                        Simpan Perubahan
+                    </h4>
+                </button>
+            </div>
+        </form>
+    </div>
+    } @else {
+    <no-data
+        imageSource="assets/icons/akreditasi/no_akreditasi.png"
+        featureName="Akreditasi"
+        [hasData]="isDataExists()"
+        [ngClass]="isDataExists() ? '' : 'full-width'"
+        (onAddData)="onAdd()" />
+    }
 </div>

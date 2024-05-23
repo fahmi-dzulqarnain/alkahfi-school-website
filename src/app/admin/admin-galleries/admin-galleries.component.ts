@@ -70,7 +70,6 @@ export class AdminGalleriesComponent {
     }
 
     onSearch (keyword: string) {
-        console.log(keyword)
         this.setGaleriList(this.currentPage, this.limit, keyword)
     }
 

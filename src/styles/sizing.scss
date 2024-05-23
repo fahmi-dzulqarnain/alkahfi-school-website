@@ -50,6 +50,22 @@ $hugeSize: 8rem;
         }
     }
 
+    &-bottom {
+        margin-bottom: 1.5rem;
+
+        &-small {
+            margin-bottom: $smallSize;
+        }
+
+        &-default {
+            margin-bottom: $defaultSize;
+        }
+
+        &-lessHuge {
+            margin-bottom: $lessHugeSize;
+        }
+    }
+
     &-vertical {
         margin: 1.5rem 0;
 

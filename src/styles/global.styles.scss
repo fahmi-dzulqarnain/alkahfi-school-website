@@ -112,8 +112,13 @@ h3 {
 }
 
 no-data {
-    margin-top: 25vh;
+    margin-top: 35vh;
     min-width: 50%;
+
+    &.full-width {
+        margin-top: 25vh;
+        min-width: 100%;
+    }
 
     &.big {
         margin-top: 35vh;
