@@ -19,9 +19,6 @@
 
 .img-news-placeholder {
     border-radius: 1rem;
-}
-
-.img-news-placeholder {
 
     span {
         @extend .full-width;
@@ -30,6 +27,12 @@
             height: 17rem;
             object-fit: cover;
             border-radius: 1rem;
+
+            &.contain {
+                height: 17rem;
+                border-radius: 1rem;
+                object-fit: contain;
+            }
         }
 
         img.p-image-preview {

@@ -50,6 +50,23 @@ export class BaseAPIService {
         return response.data
     }
 
+    async getOneByID<T> (featureEndpoint: Feature, id: StringID): Promise<T> {
+        const response = await lastValueFrom(
+            this.httpClient
+                .get<APIResponse<T>>(
+                    `${Constants.API_ENDPOINT}/${featureEndpoint}/byID?id=${id}`
+                )
+                .pipe(
+                    catchError(error => {
+                        console.error(error)
+                        return [ { data: null } ]
+                    })
+                )
+        )
+
+        return response.data
+    }
+
     async addOne<T> (
         featureEndpoint: Feature,
         data: T

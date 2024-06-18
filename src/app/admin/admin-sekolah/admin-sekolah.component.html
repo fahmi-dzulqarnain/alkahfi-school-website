@@ -1,0 +1,187 @@
+<div class="content-container-no-margin padding">
+    @if (isDataExists()) {
+    <div class="flex-column leading-column with-gap">
+        <feature-title
+            title="Detail Sekolah"
+            iconPath="assets/icons/informasi/school_icon.png"
+            iconSize="medium" />
+
+        <data-menu-bar
+            [buttons]="dataMenuButtons"
+            (searchKeyword)="onSearch($event)" />
+
+        <p-card>
+            @for (sekolah of sekolahList; track $index) {
+            <div
+                class="flex-column
+                        clickable-with-divider
+                        padding-default"
+                (click)="onClickDetail(sekolah)">
+
+                <h3>{{ sekolah.namaSekolah }}</h3>
+
+                <div class="text-year">
+                    {{ sekolah.alamat }}
+                </div>
+            </div>
+            }
+        </p-card>
+    </div>
+    }
+
+    @if (isShowForm()) {
+    <div
+        class="padding flex-column margin-top"
+        [ngClass]="isDataExists() ? 'trailing-column' : 'container-width'">
+
+        <form
+            class="flex-column with-gap-large container-width"
+            [formGroup]="sekolahForm">
+
+            <h2>{{ formTitle }}</h2>
+
+            <div class="flex-column with-gap-small">
+                <label for="inputNamaSekolah">Nama Sekolah</label>
+                <input
+                    pInputText
+                    id="inputNamaSekolah"
+                    formControlName="namaSekolah" />
+            </div>
+
+            <div class="flex-column with-gap-small">
+                <label for="inputSlogan">Slogan</label>
+                <input
+                    pInputText
+                    id="inputSlogan"
+                    formControlName="slogan" />
+            </div>
+
+            <div class="flex-column with-gap-small">
+                <label for="inputAlamat">Alamat</label>
+                <input
+                    pInputTextarea
+                    id="inputAlamat"
+                    formControlName="alamat" />
+            </div>
+
+            <div class="content-container-no-margin flex-row">
+                <div class="leading-column flex-column with-gap-small">
+                    <label for="inputKecamatan">Kecamatan</label>
+                    <p-autoComplete
+                        formControlName="kecamatan"
+                        [required]="true"
+                        [forceSelection]="true"
+                        [suggestions]="filteredKecamatan"
+                        (completeMethod)="filterKecamatan($event)"
+                        (onSelect)="onKecamatanSelected()" />
+                </div>
+
+                <div class="trailing-column flex-column with-gap-small">
+                    <label for="inputKelurahan">Kelurahan</label>
+                    <p-autoComplete
+                        formControlName="kelurahan"
+                        [required]="true"
+                        [forceSelection]="true"
+                        [suggestions]="filteredKelurahan"
+                        (completeMethod)="filterKelurahan($event)" />
+                </div>
+            </div>
+
+            <div class="content-container-no-margin flex-row">
+                <div class="leading-column flex-column with-gap-small">
+                    <label for="inputNoTelp">No Telpon</label>
+                    <input
+                        pInputText
+                        id="inputNoTelp"
+                        type="tel"
+                        formControlName="noTelp" />
+                </div>
+
+                <div class="trailing-column flex-column with-gap-small">
+                    <label for="inputEmail">Email</label>
+                    <input
+                        pInputText
+                        id="inputEmail"
+                        type="email"
+                        formControlName="email" />
+                </div>
+            </div>
+
+            <div class="flex-column with-gap full-width">
+                <label class="bold">Logo</label>
+
+                <image-uploader
+                    [isSupportMultipleFiles]="false"
+                    [isImageMustContain]="true"
+                    [imagePlaceholder]="sekolahForm.get('logo')?.value"
+                    (gambarIDs)="gambarIDs = $event" />
+            </div>
+
+
+            <div class="flex-column with-gap-small">
+                <label for="inputHariBelajar">Hari Belajar</label>
+                <p-selectButton
+                    id="inputHariBelajar"
+                    formControlName="hariBelajar"
+                    [options]="days"
+                    [multiple]="true"
+                    optionLabel="name"
+                    optionValue="value" />
+            </div>
+
+            <div class="flex-column with-gap-small">
+                <label>Jam Belajar</label>
+
+                <div class="flex-row">
+                    <p-calendar
+                        id="inputAwalBelajar"
+                        formControlName="jamAwalBelajar"
+                        [timeOnly]="true"
+                        [touchUI]="true" />
+
+                    <span id="separator">s.d.</span>
+
+                    <p-calendar
+                        id="inputAkhirBelajar"
+                        formControlName="jamAkhirBelajar"
+                        [timeOnly]="true"
+                        [touchUI]="true" />
+                </div>
+            </div>
+
+            <div class="
+                flex-row
+                gravity-end
+                with-gap-small
+                margin-vertical">
+
+                <button
+                    pButton
+                    pRipple
+                    class="outlined"
+                    (click)="onCancel()">
+                    <h4>
+                        Batalkan
+                    </h4>
+                </button>
+
+                <button
+                    pButton
+                    pRipple
+                    (click)="onSave()">
+                    <h4>
+                        Simpan Perubahan
+                    </h4>
+                </button>
+            </div>
+        </form>
+    </div>
+    } @else {
+    <no-data
+        imageSource="assets/icons/informasi/school_icon.png"
+        featureName="Sekolah"
+        [hasData]="isDataExists()"
+        [ngClass]="isDataExists() ? '' : 'full-width'"
+        (onAddData)="onAdd()" />
+    }
+</div>

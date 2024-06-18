@@ -51,6 +51,29 @@
     font-weight: 500;
 }
 
+.img-placeholder-contain {
+    border-radius: 1rem;
+
+    span {
+        @extend .full-width;
+
+        img {
+            height: 17rem;
+            object-fit: contain;
+            border-radius: 1rem;
+        }
+
+        img.p-image-preview {
+            height: 100%;
+            border-radius: 0;
+        }
+
+        button {
+            border-radius: 1rem;
+        }
+    }
+}
+
 .overlay {
     position: absolute;
     top: 0;

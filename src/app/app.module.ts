@@ -33,6 +33,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea'
 import { InputTextModule } from 'primeng/inputtext'
 import { KeyFilterModule } from 'primeng/keyfilter'
 import { MenubarModule } from 'primeng/menubar'
+import { MultiSelectModule } from 'primeng/multiselect'
 import { OrderListModule } from 'primeng/orderlist'
 import { PasswordModule } from 'primeng/password'
 import { RatingModule } from 'primeng/rating'
@@ -85,9 +86,12 @@ import { FAQService } from './api/admin/faq/faq.service'
 import { FasilitasService } from './api/admin/fasilitas/fasilitas.service'
 import { GaleriService } from './api/admin/galeri/galeri.service'
 import { GambarService } from './api/admin/shared/gambar/gambar.service'
-import { ImageUploaderComponent } from './image-uploader/image-uploader.component'
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component'
 import { PaginatorModule } from 'primeng/paginator'
 import { AkreditasiService } from './api/admin/akreditasi/akreditasi.service'
+import { SekolahService } from './api/admin/sekolah/sekolah.service'
+import { AdminSekolahComponent } from './admin/admin-sekolah/admin-sekolah.component'
+import { MessageService } from 'primeng/api'
 
 @NgModule({
     declarations: [
@@ -99,6 +103,7 @@ import { AkreditasiService } from './api/admin/akreditasi/akreditasi.service'
         AdminHomeComponent,
         AdminNewsComponent,
         AdminQuestionsComponent,
+        AdminSekolahComponent,
         AdminSekolahAkreditasiComponent,
         AdminSekolahFasilitasComponent,
         AdminSekolahInformasiComponent,
@@ -156,6 +161,7 @@ import { AkreditasiService } from './api/admin/akreditasi/akreditasi.service'
         InputTextModule,
         KeyFilterModule,
         MenubarModule,
+        MultiSelectModule,
         OrderListModule,
         PaginatorModule,
         PasswordModule,
@@ -177,6 +183,8 @@ import { AkreditasiService } from './api/admin/akreditasi/akreditasi.service'
         FasilitasService,
         GaleriService,
         GambarService,
+        MessageService,
+        SekolahService,
         provideHttpClient(withInterceptors([ authInterceptor ])),
     ],
     bootstrap: [ AppComponent ],

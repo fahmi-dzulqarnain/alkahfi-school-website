@@ -40,6 +40,7 @@ import { GambarService } from 'src/app/api/admin/shared/gambar/gambar.service'
 })
 export class ImageUploaderComponent {
     isSupportMultipleFiles = input.required<boolean>()
+    isImageMustContain = input<boolean>(false)
     isUploadFinished = signal<boolean>(false)
     imagePlaceholder = input<string>()
     gambarIDs = output<string[]>()

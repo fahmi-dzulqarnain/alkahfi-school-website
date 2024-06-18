@@ -70,7 +70,9 @@
     @defer (when isUploadFinished() && uploadedFiles.length > 0) {
     <div class="flex-column">
         <p-image
-            class="img-news-placeholder"
+            [ngClass]="isImageMustContain()
+                ? 'img-placeholder-contain'
+                : 'img-news-placeholder'"
             [alt]="uploadedFiles[0].name"
             [src]="uploadedFiles[0].objectURL"
             [preview]="true" />
@@ -82,7 +84,9 @@
     } @placeholder {
     @if (imagePlaceholder()) {
     <p-image
-        class="img-news-placeholder"
+        [ngClass]="isImageMustContain()
+            ? 'img-placeholder-contain'
+            : 'img-news-placeholder'"
         src="http://localhost:802/{{ imagePlaceholder() }}"
         [preview]="true" />
     } @else {

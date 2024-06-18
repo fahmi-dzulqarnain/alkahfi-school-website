@@ -1,14 +1,15 @@
-<div class="padding flex-column">
-    <feature-title
-        title="Detail Sekolah"
-        iconPath="assets/icons/informasi/school_icon.png"
-        iconSize="medium" />
+<div class="content-container-no-margin padding">
 
-    <form
-        class="content-container flex-column margin-top"
-        [formGroup]="editForm">
+    <div class="padding flex-column container-width">
 
-        <div class="leading-column flex-column with-gap-large">
+        <form
+            class="flex-column with-gap-large container-width"
+            [formGroup]="sekolahForm">
+
+            <feature-title
+                title="Detail Sekolah"
+                iconPath="assets/icons/informasi/school_icon.png"
+                iconSize="medium" />
 
             <div class="flex-column with-gap-small">
                 <label for="inputNamaSekolah">Nama Sekolah</label>
@@ -57,56 +58,36 @@
                 </div>
             </div>
 
-            <div class="flex-column with-gap-small">
-                <label for="inputKontak">No Telpon</label>
-                <input
-                    pInputText
-                    id="inputKontak"
-                    class="smallInput"
-                    type="tel"
-                    formControlName="kontak" />
-            </div>
+            <div class="content-container-no-margin flex-row">
+                <div class="leading-column flex-column with-gap-small">
+                    <label for="inputNoTelp">No Telpon</label>
+                    <input
+                        pInputText
+                        id="inputNoTelp"
+                        type="tel"
+                        formControlName="noTelp" />
+                </div>
 
-            <div class="flex-column with-gap-small">
-                <label for="inputEmail">Email</label>
-                <input
-                    pInputText
-                    id="inputEmail"
-                    class="smallInput"
-                    type="email"
-                    formControlName="email" />
-            </div>
-        </div>
-
-        <div class="trailing-column flex-column with-gap">
-            <div class="flex-column with-gap">
-                <label>Logo Sekolah</label>
-                <p-image
-                    [src]="imgSource"
-                    alt="logo sekolah fajar ilahi"
-                    [preview]="true" />
-
-                <p-fileUpload
-                    mode="basic"
-                    name="demo[]"
-                    url="https://www.primefaces.org/cdn/api/upload.php"
-                    accept="image/*"
-                    [maxFileSize]=1000000
-                    (onUpload)="onBasicUploadAuto($event)"
-                    [auto]="true"
-                    [chooseIcon]="iconUpload"
-                    chooseLabel="Unggah Logo" />
+                <div class="trailing-column flex-column with-gap-small">
+                    <label for="inputEmail">Email</label>
+                    <input
+                        pInputText
+                        id="inputEmail"
+                        type="email"
+                        formControlName="email" />
+                </div>
             </div>
 
             <div class="flex-column with-gap-small">
                 <label for="inputHariBelajar">Hari Belajar</label>
-                <p-selectButton
+                <p-multiSelect
                     id="inputHariBelajar"
                     formControlName="hariBelajar"
+                    display="chip"
                     [options]="days"
-                    [multiple]="true"
-                    optionLabel="name"
-                    optionValue="value" />
+                    [showClear]="true"
+                    [maxSelectedLabels]="7"
+                    placeholder="Pilih Hari..." />
             </div>
 
             <div class="flex-column with-gap-small">
@@ -116,6 +97,8 @@
                     <p-calendar
                         id="inputAwalBelajar"
                         formControlName="jamAwalBelajar"
+                        dateFormat="HH.mm"
+                        hourFormat="24"
                         [timeOnly]="true"
                         [touchUI]="true" />
 
@@ -124,21 +107,26 @@
                     <p-calendar
                         id="inputAkhirBelajar"
                         formControlName="jamAkhirBelajar"
+                        dateFormat="HH:mm"
+                        hourFormat="24"
                         [timeOnly]="true"
                         [touchUI]="true" />
                 </div>
             </div>
 
-        </div>
+            <div class="gravity-end
+                        with-gap-small
+                        margin-vertical">
 
-        <button
-            pButton
-            pRipple
-            class="button-simpan gravity-end"
-            (click)="onSubmit()">
-            <h4>
-                Simpan Perubahan
-            </h4>
-        </button>
-    </form>
+                <button
+                    pButton
+                    pRipple
+                    (click)="onSave()">
+                    <h4>
+                        Simpan Perubahan
+                    </h4>
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

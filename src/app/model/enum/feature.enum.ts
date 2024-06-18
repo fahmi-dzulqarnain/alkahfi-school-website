@@ -4,4 +4,6 @@ export enum Feature {
     FAQ = 'faq',
     Fasilitas = 'fasilitas',
     Galeri = 'galeri',
+    Pengguna = 'pengguna',
+    Sekolah = 'sekolah',
 }

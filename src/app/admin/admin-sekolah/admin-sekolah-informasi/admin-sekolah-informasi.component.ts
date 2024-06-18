@@ -1,13 +1,23 @@
-import { Component, inject, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
-import { faUpload } from '@fortawesome/free-solid-svg-icons'
+import { HttpStatusCode } from '@angular/common/http'
+import { Component, inject, OnInit, signal } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { faAdd, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { MessageService } from 'primeng/api'
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete'
-import { UploadEvent } from 'primeng/fileupload'
+import { SekolahService } from 'src/app/api/admin/sekolah/sekolah.service'
+import { DataResponse } from 'src/app/api/admin/shared/interface/data-response.interface'
 import { Constants } from 'src/app/api/config/constant'
+import { ButtonModel } from 'src/app/model/button.model'
+import { Feature } from 'src/app/model/enum/feature.enum'
+import { TitleOf } from 'src/app/model/form-title.model'
+import { Kategori } from 'src/app/model/kategori.model'
 import { Localities } from 'src/app/model/localities.model'
 import { Option } from 'src/app/model/option.model'
+import { Sekolah } from 'src/app/model/sekolah.model'
+import { FormTitle } from 'src/app/model/types/string.types'
 import { AddressService } from 'src/app/services/address.service'
 import { DaysService } from 'src/app/services/days.service'
+import { convertObjectToArray } from 'src/app/utilities/public-function.utilities'
 
 @Component({
     selector: 'app-admin-sekolah-informasi',
@@ -18,40 +28,80 @@ export class AdminSekolahInformasiComponent implements OnInit {
     private builder = inject(FormBuilder)
     private addressService = inject(AddressService)
     private daysService = inject(DaysService)
+    private service = inject(SekolahService)
+    private messageService = inject(MessageService)
 
-    editForm: FormGroup
+    sekolahForm: FormGroup = this.builder.group({
+        namaSekolah: '',
+        npsn: '',
+        alamat: '',
+        kelurahan: '',
+        kecamatan: '',
+        kota: '',
+        email: '',
+        noTelp: '',
+        tahunDidirikan: '',
+        slogan: '',
+        hariBelajar: new FormControl([]),
+        jamAwalBelajar: '',
+        jamAkhirBelajar: '',
+        tautanWebsite: '',
+    })
+
+    days: string[]
     filteredKecamatan: string[]
     filteredKelurahan: string[]
-    days: Option[]
-    imgSource = 'http://localhost:4200/assets/FI-TK@2x.png'
-    iconUpload = ''
+    kategoriIDs = []
+    selectedDays: string[]
 
     private addresses: Localities[]
     private selectedKecamatan: string
 
     ngOnInit () {
-        this.editForm = this.builder.group({
-            namaSekolah: 'TKIT Fajar Ilahi',
-            slogan: 'Menuju Kejayaan Ummat dengan Al Quran dan As Sunnah',
-            alamat: 'JL. Mayjend RH Sugandhi II No. 1 MKGR Batu Aji Batam',
-            kelurahan: 'Kibing',
-            kecamatan: 'Batu Aji',
-            hariBelajar: [],
-            jamAwalBelajar: '07:00',
-            jamAkhirBelajar: '',
-            kontak: '',
-            email: '',
-        })
-
-        this.iconUpload = Constants.ICON_PREFIX + faUpload.iconName
         this.addresses = this.addressService.batamLocalities
-        this.days = this.daysService.days
-        this.selectedKecamatan = this.editForm.value.kecamatan
-        this.editForm.get('hariBelajar').setValue([ 1 ])
+        this.days = this.daysService.days.map(
+            day => day.name
+        ) as unknown as string[]
 
-        if (this.selectedKecamatan != '') {
-            this.editForm.get('kelurahan')?.enable()
-        }
+        this.getSekolahInfo()
+    }
+
+    getSekolahInfo () {
+        this.service.getSekolahByID().then((sekolah: Sekolah) => {
+            const jamBelajar = sekolah.jamBelajar?.split('-')
+            const jamAwalBelajar = jamBelajar[0] ?? '00:00'
+            const jamAkhirBelajar = jamBelajar[1] ?? '00:00'
+
+            const hariBelajarString = sekolah.hariBelajar as unknown as string
+            const hariBelajarArray = hariBelajarString
+                .replace('{', '')
+                .replace('}', '')
+                .replaceAll('"', '')
+                .split(',')
+
+            this.kategoriIDs = sekolah.kategori.map(kategori => kategori.id)
+            this.sekolahForm = this.builder.group({
+                id: sekolah.id,
+                namaSekolah: sekolah.namaSekolah,
+                npsn: sekolah.npsn,
+                alamat: sekolah.alamat,
+                kelurahan: sekolah.kelurahan,
+                kecamatan: sekolah.kecamatan,
+                kota: sekolah.kota ?? '',
+                email: sekolah.email,
+                noTelp: sekolah.noTelp,
+                tahunDidirikan: sekolah.tahunDidirikan,
+                logo: sekolah.logo,
+                slogan: sekolah.slogan,
+                hariBelajar: new FormControl(hariBelajarArray),
+                jamAwalBelajar,
+                jamAkhirBelajar,
+                tautanWebsite: sekolah.tautanWebsite,
+            })
+            this.selectedDays = hariBelajarArray
+
+            this.generateKecamatanKelurahan()
+        })
     }
 
     filterKecamatan (event: AutoCompleteCompleteEvent) {
@@ -69,37 +119,107 @@ export class AdminSekolahInformasiComponent implements OnInit {
     }
 
     onKecamatanSelected () {
-        this.selectedKecamatan = this.editForm.value.kecamatan
+        this.selectedKecamatan = this.sekolahForm.value.kecamatan
 
         if (this.selectedKecamatan != '') {
-            this.editForm.get('kelurahan')?.setValue('')
-            this.editForm.get('kelurahan')?.enable()
+            this.sekolahForm.get('kelurahan')?.setValue('')
+            this.sekolahForm.get('kelurahan')?.enable()
         }
     }
 
     filterKelurahan (event: AutoCompleteCompleteEvent) {
-        const filtered: string[] = []
         const query = event.query
-        const selectedKecamatan = this.editForm.value.kecamatan
+        const selectedKecamatan = this.sekolahForm.value.kecamatan
         const daftarKelurahan = this.addresses.find(
             value => value.kecamatan == selectedKecamatan
         ).kelurahan
-
-        for (let i = 0; i < daftarKelurahan.length; i++) {
-            const kelurahan = daftarKelurahan[i]
-            if (kelurahan.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-                filtered.push(kelurahan)
-            }
-        }
+        const filtered = daftarKelurahan.filter(kelurahan =>
+            kelurahan.toLowerCase().startsWith(query.toLowerCase())
+        )
 
         this.filteredKelurahan = filtered
     }
 
-    onBasicUploadAuto (event: UploadEvent) {
-        //TODO:
+    generateKecamatanKelurahan () {
+        this.selectedKecamatan = this.sekolahForm.value.kecamatan
+
+        if (this.selectedKecamatan != '') {
+            this.sekolahForm.get('kelurahan')?.enable()
+        }
     }
 
-    onSubmit () {
-        console.log(this.editForm.value)
+    getJamBelajar (): string {
+        const sekolahData = this.sekolahForm.value
+        let jamAwalBelajar = sekolahData.jamAwalBelajar
+        let jamAkhirBelajar = sekolahData.jamAkhirBelajar
+
+        if (typeof jamAwalBelajar === 'object') {
+            jamAwalBelajar = new Date(jamAwalBelajar).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+            })
+        }
+
+        if (typeof jamAkhirBelajar === 'object') {
+            jamAkhirBelajar = new Date(jamAkhirBelajar).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+            })
+        }
+
+        return `${jamAwalBelajar}-${jamAkhirBelajar}`
+    }
+
+    onSave () {
+        const idSekolah = sessionStorage.getItem('idSekolah')
+        const sekolahData = this.sekolahForm.value
+
+        const jamBelajar = this.getJamBelajar()
+
+        const newSekolah: Sekolah = {
+            namaSekolah: sekolahData.namaSekolah,
+            npsn: sekolahData.npsn,
+            alamat: sekolahData.alamat,
+            kelurahan: sekolahData.kelurahan,
+            kecamatan: sekolahData.kecamatan,
+            kota: sekolahData.kota,
+            email: sekolahData.email,
+            noTelp: sekolahData.noTelp,
+            tahunDidirikan: sekolahData.tahunDidirikan,
+            logo: '',
+            slogan: sekolahData.slogan,
+            hariBelajar: sekolahData.hariBelajar,
+            jamBelajar,
+            tautanWebsite: sekolahData.tautanWebsite,
+            kategoriIDs: this.kategoriIDs,
+        }
+
+        if (newSekolah) {
+            this.service
+                .updateSekolah(idSekolah, newSekolah)
+                .then(response => {
+                    if (response.statusCode == HttpStatusCode.Ok) {
+                        this.getSekolahInfo()
+                        this.messageService.add({
+                            severity: Constants.MESSAGE_SEVERITY.SUCCESS,
+                            summary: 'Berhasil Mengubah Data',
+                            detail: response.message,
+                        })
+                    } else {
+                        this.messageService.add({
+                            severity: Constants.MESSAGE_SEVERITY.ERROR,
+                            summary: 'Gagal Mengubah Sekolah',
+                            detail: response.message,
+                        })
+                    }
+                })
+                .catch(error => {
+                    this.messageService.add({
+                        severity: Constants.MESSAGE_SEVERITY.ERROR,
+                        summary: 'Gagal Mengubah Sekolah',
+                        detail: error.message,
+                    })
+                })
+        }
     }
 }
