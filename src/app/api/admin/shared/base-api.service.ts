@@ -50,11 +50,34 @@ export class BaseAPIService {
         return response.data
     }
 
-    async getOneByID<T> (featureEndpoint: Feature, id: StringID): Promise<T> {
+    async getOneByID<T> (
+        featureEndpoint: Feature,
+        id: StringID,
+        customQuery: string = ''
+    ): Promise<T> {
+        const query = customQuery.length === 0 ? 'byID?id' : customQuery
         const response = await lastValueFrom(
             this.httpClient
                 .get<APIResponse<T>>(
-                    `${Constants.API_ENDPOINT}/${featureEndpoint}/byID?id=${id}`
+                    `${Constants.API_ENDPOINT}/${featureEndpoint}/${query}=${id}`
+                )
+                .pipe(
+                    catchError(error => {
+                        console.error(error)
+                        return [ { data: null } ]
+                    })
+                )
+        )
+
+        return response.data
+    }
+
+    async getLatest<T> (featureEndpoint: Feature): Promise<T> {
+        const idSekolah = sessionStorage.getItem('idSekolah')
+        const response = await lastValueFrom(
+            this.httpClient
+                .get<APIResponse<T>>(
+                    `${Constants.API_ENDPOINT}/${featureEndpoint}/latest?sekolahID=${idSekolah}`
                 )
                 .pipe(
                     catchError(error => {

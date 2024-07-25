@@ -7,92 +7,92 @@
 }
 
 .nav {
-  padding-top: 2rem;
-  position: fixed;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  background-color: #E6F2D8;
-  border-radius: 0 0 1.5rem 1.5rem;
-  box-shadow: 0.2px 0.1px 60px #bebebe,
-    -2px -20px 60px var(--secondary-color);
+    padding-top: 1.6rem;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: #E6F2D8;
+    border-radius: 0 0 1.5rem 1.5rem;
+    box-shadow: 0.2px 0.1px 60px #bebebe,
+        -2px -20px 60px var(--secondary-color);
 }
 
 .nav__logo {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
 }
 
 .nav__logo span {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .nav__links {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .link a {
-  padding: 0 1rem;
-  color: var(--text-dark);
-  transition: 0.3s;
+    padding: 0 1rem;
+    color: var(--text-dark);
+    transition: 0.3s;
 }
 
 .link a:hover {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .link__header a {
-  padding: 0 1rem;
-  color: var(--text-dark);
-  font-weight: 600;
-  opacity: .95;
+    padding: 0 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    opacity: .95;
 }
 
 .link__header:hover {
-  color: var(--text-dark);
+    color: var(--text-dark);
 
-  a {
-    font-weight: 900;
-  }
+    a {
+        font-weight: 900;
+    }
 
-  div {
-    opacity: 1;
-  }
+    div {
+        opacity: 1;
+    }
 }
 
 .link__header div {
-  opacity: 0;
-  margin-top: 1.5rem;
-  border-top: 10px solid var(--Green);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  transition: 0.3s;
+    opacity: 0;
+    margin-top: 1.2rem;
+    border-top: 10px solid var(--Green);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: 0.3s;
 }
 
 mobile-nav {
-  display: none;
+    display: none;
 }
 
 @media (width < 900px) {
 
-  .nav {
-    padding: 0;
-  }
+    .nav {
+        padding: 0;
+    }
 
-  mobile-nav {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+    mobile-nav {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 
-  .nav__links {
-    display: none;
-  }
+    .nav__links {
+        display: none;
+    }
 }

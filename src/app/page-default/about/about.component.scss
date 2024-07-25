@@ -1,46 +1,50 @@
 /*=============== ABOUT ===============*/
+@import '../../../styles.scss';
+
+.about {
+    background-color: var(--primary-color-light);
+}
 
 .about__container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
 }
 
 .image__about {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
 }
 
 .about__col {
-  display: grid;
-  place-content: center;
-  gap: 1rem;
+    display: grid;
+    place-content: center;
+    gap: 1rem;
 }
 
 .about__content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+    @extend .flex-column;
+
+    justify-content: center;
 }
 
-.about__content > div {
-  max-width: 500px;
+.about__content p {
+    margin: 0 0 2rem 0;
+    line-height: 2rem;
 }
 
-.about__content .section__subtitle {
-  margin-bottom: 2rem;
+.btn_about {
+    margin-right: auto;
 }
 
-.btn_about:hover {
-  content: 'Daftar';
+.btn_about span::after {
+    position: relative;
+    content: 'Lebih Lanjut';
 }
-
-@media (width < 900px) {}
 
 @media (width < 600px) {
-  .about__container {
-    grid-template-columns: repeat(1, 1fr);
-  }
+    .about__container {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

@@ -6,6 +6,7 @@ import { UploadEvent } from 'primeng/fileupload'
 import { PaginatorState } from 'primeng/paginator'
 import { GaleriService } from 'src/app/api/admin/galeri/galeri.service'
 import { GaleriResponse } from 'src/app/api/admin/galeri/interface/galeri-response'
+import { Constants } from 'src/app/api/config/constant'
 import { ButtonModel } from 'src/app/model/button.model'
 import { Feature } from 'src/app/model/enum/feature.enum'
 import { TitleOf } from 'src/app/model/form-title.model'
@@ -33,6 +34,7 @@ export class AdminGalleriesComponent {
     first: number = 0
     currentPage: number = 1
     limit: number = 1
+    baseUrl: string = Constants.API_ENDPOINT
     totalRecords = signal<number>(0)
 
     ngOnInit () {
@@ -58,7 +60,6 @@ export class AdminGalleriesComponent {
         this.galeriService
             .getGaleriList(currentPage, limit, keyword)
             .then((res: GaleriResponse) => {
-                console.log(res)
                 this.totalRecords.set(res.totalRecords)
                 this.galeriList = res.galeriList
                 this.isDataExists.set(this.galeriList.length > 0)

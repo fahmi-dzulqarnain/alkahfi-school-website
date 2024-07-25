@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
 @Component({
     selector: 'image-container',
     templateUrl: './image-container.component.html',
-    styleUrls: ['./image-container.component.scss']
+    styleUrls: [ './image-container.component.scss' ],
 })
 export class ImageContainerComponent {
     @Input() imageWidth: string
@@ -12,7 +12,7 @@ export class ImageContainerComponent {
 
     isImageLoading = true
 
-    imageLoaded() {
+    imageLoaded () {
         this.isImageLoading = false
     }
 }

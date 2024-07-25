@@ -10,10 +10,11 @@ import { AdminSekolahInformasiComponent } from '../admin/admin-sekolah/admin-sek
 import { AdminSekolahAkreditasiComponent } from '../admin/admin-sekolah/admin-sekolah-akreditasi/admin-sekolah-akreditasi.component'
 import { AdminSekolahFasilitasComponent } from '../admin/admin-sekolah/admin-sekolah-fasilitas/admin-sekolah-fasilitas.component'
 import { authGuard } from '../api/auth/guard/auth.guard'
+import { RouterConstant } from './router.constant'
+import { NewsDetailComponent } from '../page-default/news/news-detail/news-detail.component'
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'default', component: PageDefaultComponent },
     {
         path: 'admin',
         component: AdminContainerComponent,
@@ -50,7 +51,11 @@ const routes: Routes = [
             },
         ],
     },
-    { path: '**', redirectTo: 'default' },
+    {
+        path: `${RouterConstant.toNewsDetail}/:id`,
+        component: NewsDetailComponent,
+    },
+    { path: '**', component: PageDefaultComponent },
 ]
 
 @NgModule({

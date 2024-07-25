@@ -69,6 +69,10 @@ a {
     text-decoration: none;
 }
 
+.blank {
+    visibility: hidden;
+}
+
 .section__container {
     max-width: var(--max-width);
     margin: auto;
@@ -88,14 +92,13 @@ a {
     font-size: 2rem;
     font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: 1rem;
 }
 
 .section__subtitle {
     margin: 0;
     font-size: 1rem;
     color: var(--text-dark);
-    max-width: calc(var(--max-width) / 2);
+    max-width: calc(var(--max-width) / 4);
     font-weight: var(--font-medium);
     line-height: 1.8rem;
 }
@@ -119,20 +122,6 @@ a {
     border: solid var(--primary-color);
     color: var(--primary-color);
     font-weight: var(--font-semi-bold);
-}
-
-.btn_about span::after {
-    position: relative;
-    content: 'Lebih Lanjut';
-}
-
-.btn_about span::after {
-    position: relative;
-    content: 'Lebih Lanjut';
-}
-
-.btn_about:hover span::after {
-    content: 'Daftar';
 }
 
 .logo-btn {
@@ -159,26 +148,8 @@ img {
     overflow-y: scroll;
 }
 
-/* width */
-::-webkit-scrollbar {
-    width: .5rem;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    box-shadow: 0 0 5px grey;
-    border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #849e69;
-    border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-color);
+footer {
+    z-index: 2;
 }
 
 /*=============== MEDIA ===============*/
@@ -186,9 +157,5 @@ img {
 @media (width < 900px) {
     .section__container {
         padding: 5rem 1rem;
-    }
-
-    .section__subtitle {
-        margin: 0 2rem;
     }
 }

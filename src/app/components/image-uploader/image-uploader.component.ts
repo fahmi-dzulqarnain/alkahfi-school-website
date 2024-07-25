@@ -51,7 +51,8 @@ export class ImageUploaderComponent {
     uploadedFiles = []
     totalSize: number = 0
     totalSizePercent: number = 0
-    uploadURL = `${Constants.API_ENDPOINT}/gambar/upload`
+    baseURL: string = Constants.API_ENDPOINT
+    uploadURL = `${this.baseURL}/gambar/upload`
     iconRemove = faTimesCircle
     iconUpload = faCloudUpload
     iconImage = faImage

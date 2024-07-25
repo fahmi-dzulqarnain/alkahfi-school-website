@@ -48,6 +48,10 @@ $hugeSize: 8rem;
         &-lessHuge {
             margin-top: $lessHugeSize;
         }
+
+        &-huge {
+            margin-top: $hugeSize;
+        }
     }
 
     &-bottom {
@@ -137,12 +141,25 @@ $hugeSize: 8rem;
     width: 100%;
 }
 
-.container-width {
-    width: 75%;
-    @extend .margin-horizontal-auto;
+.container {
 
-    @include breakpoint(small, max) {
-        width: 100%;
+    &-width {
+        width: 75%;
+        @extend .margin-horizontal-auto;
+
+        @include breakpoint(small, max) {
+            width: 100%;
+        }
+    }
+
+    &-content {
+        width: 80%;
+        padding: 3rem 0 5rem 0;
+        margin: auto;
+
+        @include breakpoint(small, max) {
+            width: 100%;
+        }
     }
 }
 

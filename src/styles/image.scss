@@ -48,7 +48,18 @@
 
 .galeri-item {
     width: 100%;
-    max-height: 24rem;
+    max-height: 25rem;
     object-fit: cover;
     border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: $defaultSize;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.1));
 }

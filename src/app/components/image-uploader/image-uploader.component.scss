@@ -74,17 +74,6 @@
     }
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: $defaultSize;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.85),
-            rgba(0, 0, 0, 0.1));
-}
-
 p {
     width: 20rem;
     text-align: center;

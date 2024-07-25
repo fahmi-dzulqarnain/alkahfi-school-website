@@ -1,5 +1,5 @@
 import { HttpStatusCode } from '@angular/common/http'
-import { Component, inject, OnInit, signal } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { faAdd, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { MessageService } from 'primeng/api'
@@ -17,7 +17,6 @@ import { Sekolah } from 'src/app/model/sekolah.model'
 import { FormTitle } from 'src/app/model/types/string.types'
 import { AddressService } from 'src/app/services/address.service'
 import { DaysService } from 'src/app/services/days.service'
-import { convertObjectToArray } from 'src/app/utilities/public-function.utilities'
 
 @Component({
     selector: 'app-admin-sekolah-informasi',
@@ -30,6 +29,7 @@ export class AdminSekolahInformasiComponent implements OnInit {
     private daysService = inject(DaysService)
     private service = inject(SekolahService)
     private messageService = inject(MessageService)
+    private logoURL: string = ''
 
     sekolahForm: FormGroup = this.builder.group({
         namaSekolah: '',
@@ -99,6 +99,7 @@ export class AdminSekolahInformasiComponent implements OnInit {
                 tautanWebsite: sekolah.tautanWebsite,
             })
             this.selectedDays = hariBelajarArray
+            this.logoURL = sekolah.logo
 
             this.generateKecamatanKelurahan()
         })
@@ -186,7 +187,7 @@ export class AdminSekolahInformasiComponent implements OnInit {
             email: sekolahData.email,
             noTelp: sekolahData.noTelp,
             tahunDidirikan: sekolahData.tahunDidirikan,
-            logo: '',
+            logo: this.logoURL,
             slogan: sekolahData.slogan,
             hariBelajar: sekolahData.hariBelajar,
             jamBelajar,

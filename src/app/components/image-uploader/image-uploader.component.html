@@ -87,7 +87,7 @@
         [ngClass]="isImageMustContain()
             ? 'img-placeholder-contain'
             : 'img-news-placeholder'"
-        src="http://localhost:802/{{ imagePlaceholder() }}"
+        src="{{ baseURL }}/{{ imagePlaceholder() }}"
         [preview]="true" />
     } @else {
     <div class="image-placeholder">

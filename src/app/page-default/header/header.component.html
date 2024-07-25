@@ -1,18 +1,25 @@
-
 <div class="section__container header__container" id="beranda">
-    <div class="header__image">
-      <img src="../assets/FI-TK@2x.png" alt="header"/>
-    </div>
+    <image-container
+        class="header__image"
+        imageWidth="100%"
+        imageHeight="100%"
+        imageSource="{{ sekolah().logo }}" />
     <div class="header__content">
-      <div>
-        <h1>TKIT Fajar Ilahi</h1>
-        <p class="section__subtitle">
-          Menuju Kejayaan Ummat dengan Al Quran dan As Sunnah
-        </p>
-        <div class="action__btns">
-          <button class="btn"><i class="ri-arrow-down-line logo-btn"></i>Pelajari Lebih Lanjut</button>
-          <button class="btn"><i class="ri-file-3-fill logo-btn"></i>Daftar</button>
+        <div>
+            <h1>{{ sekolah().namaSekolah }}</h1>
+            <p class="section__subtitle">
+                {{ sekolah().slogan }}
+            </p>
+            <div class="action__btns">
+                <a href="#fasilitas" class="btn">
+                    <i class="ri-arrow-down-line logo-btn"></i>
+                    Pelajari Lebih Lanjut
+                </a>
+                <a href="https://ppdb.alkahfi.or.id" class="btn">
+                    <i class="ri-file-3-fill logo-btn"></i>
+                    Daftar
+                </a>
+            </div>
         </div>
-      </div>
     </div>
 </div>

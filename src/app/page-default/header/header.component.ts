@@ -1,12 +1,12 @@
-import { Component } from "@angular/core";
+import { Component, input, OnInit } from '@angular/core'
+import { Sekolah } from 'src/app/model/sekolah.model'
+import { StringID } from 'src/app/model/types/string.types'
 
 @Component({
-    selector:'header',
+    selector: 'header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: [ './header.component.scss' ],
 })
-
 export class HeaderComponent {
-    judul = "Header Baru"
-    gambar_tkit = 'assets/FI-TK@2x.png'
+    sekolah = input.required<Sekolah>()
 }

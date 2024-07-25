@@ -9,5 +9,6 @@ export namespace RouterConstant {
         akreditasi: 'admin/sekolah/akreditasi',
         fasilitas: 'admin/sekolah/fasilitas',
     }
+    export const toNewsDetail = 'berita'
     export const toLogin = 'login'
 }

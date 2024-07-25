@@ -1,1 +1,47 @@
-<p>news-detail works!</p>
+<div class="flex-column">
+    <nav></nav>
+
+    <div class="content-container-no-margin">
+        <div class="
+            news-detail
+            margin-top
+            leading-column-big">
+
+            <div class="
+                flex-column
+                container-content
+                with-gap-large">
+
+                <div class="news-header">
+
+                    <img
+                        class="img-news-detail"
+                        src="{{ imageBaseURL }}/{{ berita?.gambarIlustrasi }}" />
+
+                    <div class="overlay"></div>
+
+                    <div class="details">
+                        <h1>{{ berita.judul }}</h1>
+                        <p>{{ berita.createdAt | date: 'dd MMMM yyyy' }}</p>
+                    </div>
+                </div>
+
+                <div
+                    class="paragraph"
+                    [innerHTML]="berita.kontenHTML"></div>
+            </div>
+
+        </div>
+
+        <div class="
+            margin-top
+            sidebar
+            trailing-column-small">
+            <news
+                [hasBackground]="false"
+                [isSmallLayout]="true" />
+        </div>
+    </div>
+
+    <footer></footer>
+</div>

@@ -15,3 +15,15 @@ $bigFontSize: 2rem;
 .bold {
     font-weight: bold;
 }
+
+.regular {
+    font-weight: normal;
+}
+
+.paragraph {
+    @extend .flex-column;
+    @extend .with-gap-small;
+
+    font-size: $mediumFontSize;
+    line-height: 2rem;
+}

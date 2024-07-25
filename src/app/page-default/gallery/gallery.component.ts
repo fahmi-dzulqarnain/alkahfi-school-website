@@ -1,39 +1,79 @@
-import { Component } from "@angular/core";
+import { Component, inject, OnInit, signal } from '@angular/core'
+import { PaginatorState } from 'primeng/paginator'
+import { GaleriService } from 'src/app/api/admin/galeri/galeri.service'
+import { GaleriResponse } from 'src/app/api/admin/galeri/interface/galeri-response'
+import { Constants } from 'src/app/api/config/constant'
+import { Galeri } from 'src/app/model/galeri.model'
 
 @Component({
-    selector:'gallery',
+    selector: 'gallery',
     templateUrl: './gallery.component.html',
-    styleUrls: ['./gallery.component.scss']
+    styleUrls: [ './gallery.component.scss' ],
 })
+export class GalleryComponent implements OnInit {
+    private galeriService = inject(GaleriService)
 
-export class GalleryComponent {
-    judul = "Header Baru"
-    gambar_tkit = 'assets/FI-TK@2x.png'
-    slideIndex = 1
+    imageBaseURL = ''
+    galeriList: Galeri[] = []
+    gambarURLs: string[] = []
+    isDataExists = signal<boolean>(this.galeriList.length > 0)
+    first: number = 0
+    currentPage: number = 1
+    limit: number = 1
+    totalRecords = signal<number>(0)
 
-    // const indi = document.getElementsByClassName('indicator');
+    ngOnInit () {
+        this.imageBaseURL = Constants.API_ENDPOINT
+        this.setGaleriList(1, 1)
+    }
 
-    // plusSlides(n: number) {
-    //     this.showSlides(this.slideIndex += n);
-    // }
-    // currentSlide(n: number) {
-    //     this.showSlides(this.slideIndex = n);
-    // }
+    setGaleriList (
+        currentPage: number = 1,
+        limit: number = 10,
+        keyword?: string
+    ) {
+        this.limit = limit
+        this.currentPage = currentPage
+        this.galeriList = []
+        this.gambarURLs = []
 
-    // showSlides(n: number) {
-    //     let i
-    //     let slides = document.getElementsByClassName("mySlides");
-    //     let dots = document.getElementsByClassName("dot");
+        this.galeriService
+            .getGaleriList(currentPage, limit, keyword)
+            .then((res: GaleriResponse) => {
+                this.totalRecords.set(res.totalRecords)
+                this.isDataExists.set(this.galeriList.length > 0)
 
-    //     if (n > slides.length) {this.slideIndex = 1}
-    //     if (n < 1) {this.slideIndex = slides.length}
-    //     for (i = 0; i < slides.length; i++) {
-    //         slides[i].style.display = "none";
-    //     }
-    //     for (i = 0; i < dots.length; i++) {
-    //         dots[i].className = dots[i].className.replace(" active", "");
-    //     }
-    //     slides[this.slideIndex-1].style.display = "block";
-    //     dots[this.slideIndex-1].className += " active";
-    // }
+                this.galeriList = res.galeriList
+                this.galeriList.at(0).gambarIDs.forEach(gambarID => {
+                    this.gambarURLs.push(`${this.imageBaseURL}/${gambarID}`)
+                })
+            })
+    }
+
+    onPageChange (event: PaginatorState) {
+        this.setGaleriList(event.page + 1, this.limit)
+    }
+
+    onSearch (keyword: string) {
+        this.setGaleriList(this.currentPage, this.limit, keyword)
+    }
+
+    removeFileExtension (filename: string) {
+        return filename.split('.').slice(0, -1).join('.')
+    }
+
+    responsiveOptions = [
+        {
+            breakpoint: '1024px',
+            numVisible: 5,
+        },
+        {
+            breakpoint: '768px',
+            numVisible: 3,
+        },
+        {
+            breakpoint: '560px',
+            numVisible: 1,
+        },
+    ]
 }

@@ -11,6 +11,7 @@ import { SignInDTO } from 'src/app/api/auth/model/dto/sign-in.dto'
 import { LoginResponse } from 'src/app/api/auth/model/login-response.model'
 import { APIResponse } from 'src/app/api/public/types/api-response.type'
 import { RouterService } from 'src/app/router/router.service'
+import { Message } from 'primeng/api'
 
 @Component({
     selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     faEnvelope: IconDefinition = faEnvelope
     faKey: IconDefinition = faKey
 
+    messages: Message[] | undefined
     isVerticalOrientation = true
     isMobile: boolean = false
     logoSize = LogoSize.large
@@ -74,8 +76,14 @@ export class LoginComponent implements OnInit {
 
                     this.router.toAdmin.ringkasanData()
                 },
-                error: (error: APIResponse<null>) => {
+                error: (error: any) => {
                     console.error(error)
+                    this.messages = [
+                        {
+                            severity: 'error',
+                            summary: (error.error as APIResponse<null>).message,
+                        },
+                    ]
                 },
             })
     }

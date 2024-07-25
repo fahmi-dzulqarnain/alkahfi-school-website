@@ -1,0 +1,42 @@
+@import "../../../../styles.scss";
+
+.news-detail {
+    padding: 0;
+}
+
+.news-header {
+    position: relative;
+    text-align: left;
+    color: white;
+}
+
+.img-news-detail {
+    max-height: 20rem;
+    object-fit: cover;
+    border-radius: 0 0 1rem 1rem;
+    transition: .5s ease-in-out;
+
+    @include breakpoint(small, max) {
+        max-height: 12rem;
+    }
+}
+
+.details {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+
+    @include breakpoint(small, max) {
+        bottom: 1.5rem;
+        left: 1.5rem;
+    }
+}
+
+.paragraph {
+    @extend .paragraph;
+
+    @include breakpoint(small, max) {
+        margin: auto;
+        width: 85%;
+    }
+}

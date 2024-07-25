@@ -1,33 +1,23 @@
-<section class="section__container tentang__container" id="fasilitas">
-  <div class="tentang_data">
-    <div class="tentang_details">
-      <h2 class="section_title tentang_title">Fasilitas Tersedia</h2>
-      <p class="tentang_details-description">
-        <i class="ri-checkbox-circle-fill tentang_details-icon"></i>
-        Ruang kelas yang nyaman.
-      </p>
-      <p class="tentang_details-description">
-        <i class="ri-checkbox-circle-fill tentang_details-icon"></i>
-        Wastafel di setiap kelas.
-      </p>
-      <p class="tentang_details-description">
-        <i class="ri-checkbox-circle-fill tentang_details-icon"></i>
-        Loker bagi Ananda.
-      </p>
-      <p class="tentang_details-description">
-        <i class="ri-checkbox-circle-fill tentang_details-icon"></i>
-        Katring dan makan bersama.
-      </p>
-      <p class="tentang_details-description">
-        <i class="ri-checkbox-circle-fill tentang_details-icon"></i>
-        Taman bermain dan mainan anak.
-      </p>
+<section class="section__container tentang__container">
+    <div class="tentang_data">
+        <div class="tentang_details">
+            <h2 class="section_title tentang_title">Fasilitas Tersedia</h2>
+            @for (fasilitas of fasilitasNames; track $index) {
+            <p class="tentang_details-description">
+                <i class="ri-checkbox-circle-fill tentang_details-icon"></i>
+                {{ fasilitas }}
+            </p>
+            }
+        </div>
     </div>
-  </div>
-  <div class="tentang_foto">
-    <img src="../assets/gallery-2.jpg" alt="" class="tentang_img">
-    <img src="../assets/gallery-2.jpg" alt="" class="tentang_img">
-    <img src="../assets/gallery-2.jpg" alt="" class="tentang_img">
-    <img src="../assets/gallery-2.jpg" alt="" class="tentang_img">
-  </div>
+    <div class="tentang_foto">
+        @for (image of fasilitasImages; track $index) {
+        <p-image
+            [src]="image"
+            alt=""
+            class="tentang_img"
+            [preview]="true">
+        </p-image>
+        }
+    </div>
 </section>

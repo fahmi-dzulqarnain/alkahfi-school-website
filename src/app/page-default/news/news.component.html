@@ -1,24 +1,98 @@
-<section class="news" id="berita">
-  <div class="section__container news__container">
-    <h5 class="section__title">Kumpulan</h5>
-    <h2 class="section__title">Berita Terkini</h2>
-    <div class="news__grid">
-      <div class="news__card">
-        <img src="../assets/anak-sekolaah.jpg" alt="news" />
-        <div class="news__details">
-          <h1>Kiat Mendidik Anak Usia Dini</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex cumque voluptates quod iste ad dolorem
-            obcaecati error, iure ullam odio! Laborum possimus impedit tempora similique asperiores maiores. Accusamus,
-            consequuntur ab.</p>
-          <div class="cover__sub__details">
-            <div class="sub__details"><span class="ri-time-fill"></span> 12 nov 2021</div>
-            <div class="sub__details"><span class="ri-user-fill"></span> admin </div>
-          </div>
+<section
+    [ngClass]="hasBackground()
+        ? 'news-with-bg'
+        : 'news'"
+    id="berita">
+
+    <div class="section__container news__container">
+        @if (isSmallLayout()) {
+
+        <div class="news__header margin-top-small">
+            <h3>Artikel & Berita Lainnya</h3>
+            <button
+                pButton
+                (click)="showSearchField()">
+
+                <p-inputIcon styleClass="pi pi-search" />
+            </button>
         </div>
-      </div>
+
+        <p-iconField
+            iconPosition="right"
+            [ngClass]="isSearchFieldShown()
+                ? 'visible'
+                : ''">
+
+            <p-inputIcon
+                styleClass="pi pi-search" />
+            <input
+                type="text"
+                pInputText
+                placeholder="Cari..."
+                (keyup)="onSearch($event)" />
+        </p-iconField>
+
+        } @else {
+        <h5 class="section__subtitle">Kumpulan</h5>
+        <h2 class="section__title">Berita Terkini</h2>
+        }
+        <div
+            class="news__grid"
+            [ngClass]="isSmallLayout() ? 'small' : ''">
+            @for(berita of beritaList; track $index) {
+
+            @if (isSmallLayout()) {
+            <div
+                class="news__card small"
+                (click)="onClickDetail(berita)">
+                <img
+                    class="small"
+                    src="{{ imageBaseURL + '/' + berita.gambarIlustrasi }}"
+                    alt="news" />
+                <div class="news__details small">
+                    <h4>{{ berita.judul }}</h4>
+                    <div class="sub__details">
+                        <span class="ri-time-fill"></span>
+                        <small>
+                            {{ berita.createdAt }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            } @else {
+            <div
+                class="news__card"
+                (click)="onClickDetail(berita)">
+                <img
+                    src="{{ imageBaseURL + '/' + berita.gambarIlustrasi }}"
+                    alt="news" />
+                <div class="news__details">
+                    <h2>{{ berita.judul }}</h2>
+                    <p class="regular">{{ berita.kontenPreview }}</p>
+                    <div class="cover__sub__details">
+                        <div class="sub__details">
+                            <span class="ri-time-fill"></span>
+                            {{ berita.createdAt}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            }
+
+            <p-paginator
+                [first]="first"
+                [rows]="limit"
+                [totalRecords]="totalRecords()"
+                (onPageChange)="onPageChange($event)"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="{first} - {last} dari {totalRecords}"
+                [showPageLinks]="false"
+                [showFirstLastIcon]="false" />
+        </div>
+        <!-- <div class="view__all">
+            <button class="btn">Berita Lainnya</button>
+        </div> -->
     </div>
-    <div class="view__all">
-      <button class="btn">Berita Lainnya</button>
-    </div>
-  </div>
 </section>

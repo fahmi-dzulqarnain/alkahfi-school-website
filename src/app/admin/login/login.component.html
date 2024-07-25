@@ -53,4 +53,13 @@
             Masuk Akun
         </button>
     </form>
+
 </div>
+
+<p-messages
+    class="margin"
+    [(value)]="messages"
+    life="3000"
+    [showTransitionOptions]="'500ms'"
+    [hideTransitionOptions]="'500ms'"
+    [enableService]="false" />

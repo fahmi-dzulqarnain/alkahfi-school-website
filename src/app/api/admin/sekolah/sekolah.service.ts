@@ -13,6 +13,14 @@ export class SekolahService extends BaseAPIService {
         return await this.addOne(Feature.Sekolah, dataSekolah)
     }
 
+    async getSekolahByHostname (hostname: string): Promise<StringID> {
+        return await this.getOneByID(
+            Feature.Sekolah,
+            hostname,
+            'byHostname?hostname'
+        )
+    }
+
     async getSekolahByID (): Promise<Sekolah> {
         const idSekolah = sessionStorage.getItem('idSekolah')
         return await this.getOneByID(Feature.Sekolah, idSekolah)

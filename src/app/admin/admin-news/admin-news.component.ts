@@ -89,7 +89,6 @@ export class AdminNewsComponent {
     }
 
     onSearch (keyword: string) {
-        console.log(keyword)
         this.setBeritaList(this.currentPage, this.limit, keyword)
     }
 

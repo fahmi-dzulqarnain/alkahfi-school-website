@@ -37,4 +37,8 @@ export class RouterService {
             this.router.navigateByUrl(RouterConstant.toLogin)
         },
     }
+
+    toNewsDetail (beritaID: string) {
+        this.router.navigateByUrl(`${RouterConstant.toNewsDetail}/${beritaID}`)
+    }
 }

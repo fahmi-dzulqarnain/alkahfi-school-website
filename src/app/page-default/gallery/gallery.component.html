@@ -1,70 +1,63 @@
-<section class="section__container gallery__container" id="galeri">
-  <div class="gallery__title">
-    <h2 class="section__title">
-      Galeri Album
-    </h2>
-  </div>
-  <div class="gallery__title">
-    <h1 class="section__title__big">
-      Kegiatan & Acara
-    </h1>
-  </div>
-  <div class="indikators">
+<section class="section__container" id="galeri">
+    <div class="blank">p</div>
+    <div class="gallery__title">
+        <h2 class="section__subtitle">
+            Galeri Album
+        </h2>
+    </div>
+    <div class="gallery__title">
+        <h1 class="section__title__big">
+            Kegiatan & Acara
+        </h1>
+    </div>
 
-  </div>
-  <div class="gallery__grid row">
-    <div class="column">
-      <div class="gallery__card">
-        <img src="../assets/story.jpg" alt="gallery" />
-        <div class="gallery__details">
-          <p class="gallery__title">Kegiatan</p>
-          <p class="gallery__subtitle">Sekolah</p>
-        </div>
-      </div>
-      <div class="gallery__card">
-        <img src="../assets/header-2.jpg" alt="gallery" />
-        <div class="gallery__details">
-          <p class="gallery__title">Kegiatan</p>
-          <p class="gallery__subtitle">Sekolah</p>
-        </div>
-      </div>
-      <div class="gallery__card">
-        <img src="../../assets/trip-2.jpg" alt="gallery" />
-        <div class="gallery__details">
-          <p class="gallery__title">Kegiatan</p>
-          <p class="gallery__subtitle">Sekolah</p>
-        </div>
-      </div>
+    @for(galeri of galeriList; track $index) {
+    <div class="flex-column
+            with-gap
+            padding-default">
+
+        <p-galleria
+            class="margin-horizontal-auto"
+            [value]="gambarURLs"
+            [autoPlay]="true"
+            [circular]="true"
+            [responsiveOptions]="responsiveOptions"
+            [numVisible]="5">
+
+            <ng-template pTemplate="item" let-item>
+                <p-image
+                    class="img-galeri-item"
+                    src="{{ item }}"
+                    [preview]="true" />
+            </ng-template>
+
+            <ng-template
+                pTemplate="thumbnail"
+                let-item>
+
+                <div class="grid grid-nogutter justify-content-center">
+                    <img
+                        src="{{ item }}"
+                        style="max-height: 4rem; object-fit: contain; " />
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="caption" let-item>
+                <h4 style="margin-bottom: .5rem; color: #ffffff;">
+                    {{ galeri.judul }}
+                </h4>
+                <p>{{ galeri.deskripsi }}</p>
+            </ng-template>
+        </p-galleria>
     </div>
-    <div class="column">
-      <div class="gallery__card">
-        <img src="../assets/destination-1.jpg" alt="gallery" />
-        <div class="gallery__details">
-          <p class="gallery__title">Kegiatan</p>
-          <p class="gallery__subtitle">Sekolah</p>
-        </div>
-      </div>
-      <div class="gallery__card">
-        <img src="../../assets/gallery-2.jpg" alt="gallery" />
-        <div class="gallery__details">
-          <p class="gallery__title">Kegiatan</p>
-          <p class="gallery__subtitle">Sekolah</p>
-        </div>
-      </div>
-      <div class="gallery__card">
-        <img src="../../assets/anak-sekolaah.jpg" alt="gallery" />
-        <div class="gallery__details">
-          <p class="gallery__title">Kegiatan</p>
-          <p class="gallery__subtitle">Sekolah</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="section__header">
-    <div class="gallery__nav">
-      <span><i class="ri-arrow-left-s-line"></i></span>
-      <span><i class="ri-arrow-right-s-line"></i></span>
-    </div>
-  </div>
+    }
+
+    <p-paginator
+        [first]="first"
+        [rows]="limit"
+        [totalRecords]="totalRecords()"
+        (onPageChange)="onPageChange($event)"
+        [showPageLinks]="true"
+        [showFirstLastIcon]="false" />
 
 </section>

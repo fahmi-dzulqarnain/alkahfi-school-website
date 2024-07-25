@@ -1,78 +1,79 @@
 /*=============== FOOTER ===============*/
 
 .footer {
-  border-radius: 30px 30px 0 0
+    z-index: 2;
+    border-radius: 30px 30px 0 0
 }
 
 .footer__container {
-  margin: auto;
-  padding: 5rem 1rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5rem;
-  color: var(--secondary-color);
-  background-color: #2a4b06;
-  border-radius: 15px 15px 0 0;
+    margin: auto;
+    padding: 5rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem;
+    color: var(--secondary-color);
+    background-color: #2a4b06;
+    border-radius: 15px 15px 0 0;
 }
 
 .footer__col {
-  justify-self: center;
+    justify-self: center;
 }
 
 .footer__col h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
 }
 
 .footer__col h3 span {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .footer__col p {
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .footer__col p:hover {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .footer__col p span {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 .footer__col h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
 }
 
 .footer__bar {
-  margin: auto;
-  padding: 0.5rem;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--secondary-color);
-  border-top: 1px solid var(--text-light);
-  background-color: var(--primary-color);
-  line-height: var(--line-height-1);
+    margin: auto;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    border-top: 1px solid var(--text-light);
+    background-color: var(--primary-color);
+    line-height: var(--line-height-1);
 }
 
 @media (width < 900px) {
-  .footer__container{
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .footer__container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (width < 600px) {
-  .footer__container{
-    grid-template-columns: repeat(1, 1fr);
-  }
+    .footer__container {
+        grid-template-columns: repeat(1, 1fr);
+    }
 
-  .footer__col {
-    justify-self: start;
-  }
+    .footer__col {
+        justify-self: start;
+    }
 }

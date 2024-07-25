@@ -76,12 +76,13 @@
                     [numVisible]="5"
                     [containerStyle]="{ 'max-width': '640px' }">
                     <ng-template pTemplate="item" let-item>
-                        <img src="http://localhost:802/{{item}}"
+                        <img
+                            src="{{ baseUrl }}/{{ item }}"
                             class="galeri-item" />
                     </ng-template>
                     <ng-template pTemplate="thumbnail" let-item>
                         <div class="grid grid-nogutter justify-content-center">
-                            <img src="http://localhost:802/{{item}}"
+                            <img src="{{ baseUrl }}/{{ item }}"
                                 style="max-height: 5rem; object-fit: contain; " />
                         </div>
                     </ng-template>

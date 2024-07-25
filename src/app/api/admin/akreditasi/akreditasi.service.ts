@@ -37,4 +37,8 @@ export class AkreditasiService extends BaseAPIService {
             dataAkreditasi
         )
     }
+
+    async getLatestAkreditasi (): Promise<Akreditasi> {
+        return await this.getLatest<Akreditasi>(Feature.Akreditasi)
+    }
 }

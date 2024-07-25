@@ -1,89 +1,85 @@
 /*=============== TENTANG ===============*/
 
 
-.tentang__container  {
-  display: flex;
-  row-gap: 2rem;
-  margin-top: 2.5rem;
-  justify-content: center;
-  gap: 10rem;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
+.tentang__container {
+    display: flex;
+    row-gap: 2rem;
+    margin-top: 2.5rem;
+    justify-content: center;
+    gap: 10rem;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
 }
-.tentang_container-mg  {
-  row-gap: 2rem;
-  margin-top: 2.5rem;
+
+.tentang_container-mg {
+    row-gap: 2rem;
+    margin-top: 2.5rem;
 }
-.tentang_data{
-  display: inline-block;
-  grid-gap: 1rem;
+
+.tentang_data {
+    display: inline-block;
+    grid-gap: 1rem;
 }
 
 .tentang_foto {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 }
 
 .tentang_opening {
-  position: relative;
-  align-items: center;
-  text-align: center;
-}
-
-.tentang_img {
-  width: 15rem;
-  justify-self: center;
-  border-radius: 1rem;
+    position: relative;
+    align-items: center;
+    text-align: center;
 }
 
 .tentang_img-mg {
-  width: 280px;
-  justify-self: center;
+    width: 280px;
+    justify-self: center;
 }
 
 .tentang_title {
-  margin-bottom: var(--mb-1);
+    margin-bottom: var(--mb-1);
 }
 
 .tentang_description {
-  margin-bottom: var(--mb-2);
-  line-height: var(--line-height-1);
+    margin-bottom: var(--mb-2);
+    line-height: var(--line-height-1);
 }
 
 .tentang_details {
-  display: grid;
-  row-gap: 1rem;
-  margin-bottom:var(--mb-2-5)
+    display: grid;
+    row-gap: 1rem;
+    margin-bottom: var(--mb-2-5)
 }
 
 .tentang_details-description {
-  display: inline-flex;
-  column-gap: .5rem;
-  font-size: var(--font-medium);
-  line-height: var(--line-height-1)
+    display: inline-flex;
+    column-gap: .5rem;
+    font-size: var(--font-medium);
+    line-height: var(--line-height-1)
 }
 
 .tentang_details-icon {
-  font-size: 1rem;
-  color: var(--Dark-Olive);
-  margin-top: .15rem;
+    font-size: 1rem;
+    color: var(--Dark-Olive);
+    margin-top: .15rem;
 }
 
 @media (width < 900px) {
-  .tentang__container {
-    display: grid;
-    gap: 0;
-    grid-template-columns: none;
-  }
-  
-  .tentang_foto {
-    width: auto;
-  }
+    .tentang__container {
+        display: grid;
+        gap: 0;
+        grid-template-columns: none;
+    }
+
+    .tentang_foto {
+        width: auto;
+    }
 }
 
 @media (width < 600px) {
-  .tentang_foto {
-    grid-template-columns: repeat(1, 1fr);
-  }
+    .tentang_foto {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
