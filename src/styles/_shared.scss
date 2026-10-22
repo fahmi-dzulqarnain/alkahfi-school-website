@@ -1,0 +1,9 @@
+// Variables, mixins and utility classes for component stylesheets.
+// Components import this instead of src/styles.scss, which also pulls in the
+// PrimeNG theme and would be duplicated into every component bundle.
+@import "sizing.scss";
+@import "typography.scss";
+@import "image.scss";
+@import "colors.scss";
+@import "breakpoint.scss";
+@import "global.styles.scss";
