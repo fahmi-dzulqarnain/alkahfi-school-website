@@ -1,27 +1,46 @@
-# Alkahfi
+# Al Kahfi School Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+Public website and admin CMS for **Yayasan Islam Al Kahfi Batam**, a school foundation in Batam, Indonesia. Visitors browse school information, news, gallery, FAQ and admission steps; staff manage that content from a protected admin area.
 
-## Development server
+Built and maintained by Fahmi Dzulqarnain (2023–2024).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tech stack
 
-## Code scaffolding
+- **Angular 17** (upgraded from 16), TypeScript 5.4, RxJS
+- **PrimeNG 17** components, SCSS
+- **Quill** rich-text editor for news articles
+- Font Awesome icons
+- Karma + Jasmine for unit tests
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+**Public site**
+- Landing page with school overview, about section, admission steps and FAQ
+- News list and news detail pages
+- Photo gallery
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**Admin CMS** (`/admin`, behind login)
+- Overview dashboard
+- News management with a rich-text editor
+- Gallery management
+- School information, accreditation and facilities management
 
-## Running unit tests
+**Architecture**
+- Feature-based folders: `page-default/` (public), `admin/` (CMS), `api/` (HTTP layer), `services/`, `utilities/`
+- Token-based authentication: `AuthService`, an `HttpInterceptor` that attaches the token, and an `authGuard` (`canActivateChild`) protecting every admin route
+- Central `ApiService` with the backend base URL in `src/app/api/config/constant.ts`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Getting started
 
-## Running end-to-end tests
+```bash
+npm install
+npm start          # ng serve on http://localhost:4200
+npm run build      # production build to dist/
+npm test           # unit tests (Karma)
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The app talks to a separate REST backend. Point the base URL in `src/app/api/config/constant.ts` at your own instance before running.
 
-## Further help
+## Credits
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Client: Yayasan Islam Al Kahfi Batam. School names and branding belong to the foundation.
